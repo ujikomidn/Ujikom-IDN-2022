@@ -3,8 +3,8 @@
 Konfigurasi untuk Lab 5 Ujikom
 
 ## Script R1
-
-```host R1
+```
+host R1
 int e0/0
 ip add 12.12.12.1 255.255.255.0
 no sh
@@ -32,7 +32,8 @@ delay 8008
 ```
 
 ## Script R2
-```host R2
+```
+host R2
 int e0/0
 ip add 12.12.12.2 255.255.255.0
 no sh
@@ -59,8 +60,8 @@ ip authe key eigrp 10 EIGRP
 ```
 
 ## Script R3
-
-```host R3
+```
+host R3
 int e0/0
 ip add 23.23.23.3 255.255.255.0
 no sh
