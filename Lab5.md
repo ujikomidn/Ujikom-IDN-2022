@@ -1,6 +1,6 @@
-# Lab 6
+# Lab 5
 
-Konfigurasi untuk Lab 6 Ujikom
+Konfigurasi untuk Lab 5 Ujikom
 
 ## Script R1
 
