@@ -18,6 +18,10 @@ router eigrp 10
 network 1.1.1.1 0.0.0.0
 network 12.12.12.0 0.0.0.255
 
+router bgp 123
+neighbor 2.2.2.2 remote-as 123
+neighbor 14.14.14.4 remote-as 262145
+
 key chain fkm
 key 1
 key-string eigrp
@@ -47,6 +51,12 @@ redistribute eigrp 10 subnets
 network 2.2.2.2 0.0.0.0 area 0
 network 23.23.23.0 0.0.0.255 area 0
 
+router bgp 123
+neighbor 12.12.12.1 remote-as 123
+neighbor 12.12.12.1 route-reflector-client
+neighbor 23.23.23.3 remote-as 123
+neighbor 23.23.23.3 route-reflector-client
+
 key chain fkm
 key 1
 key-string eigrp
@@ -74,6 +84,10 @@ router ospf 10
 network 3.3.3.3 0.0.0.0 area 0
 network 23.23.23.0 0.0.0.255 area 0
 
+router bgp 123
+neighbor 2.2.2.2 remote-as 123
+neighbor 34.34.34.4 remote-as 262145
+
 interface Ethernet0/1
 ip ospf authentication message-digest
 ip ospf message-digest-key 1 md5 fkm
@@ -91,4 +105,9 @@ ip address 34.34.34.4 255.255.255.0
 interface Ethernet0/1
 no shutdown
 ip address 14.14.14.4 255.255.255.0
+
+router bgp 262145
+network 4.4.4.4 mask 255.255.255.255
+neighbor 14.14.14.1 remote-as 123
+neighbor 34.34.34.3 remote-as 123
 ```
