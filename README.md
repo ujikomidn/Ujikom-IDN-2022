@@ -10,4 +10,4 @@ Konfigurasi Lab Ujikom 1-12 untuk SMK MQ.
 [Lab 6](https://github.com/ujikomidn/UjikomIDN/blob/main/Lab6.md)
 
 ## Contributing
-Ideas and Support by FKM, Implementation from Andiama, and Scripts from Andiama and FKM
+Ideas and Support by A Sunnah, Implementation from Andiama, and Scripts from Andiama and A Sunnah
