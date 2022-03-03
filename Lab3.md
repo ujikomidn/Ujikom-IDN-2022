@@ -1,6 +1,7 @@
 # Lab 3
 
-Konfigurasi untuk Lab 3 Ujikom By: A Sunnah
+Konfigurasi untuk Lab 3 Ujikom 
+By: A Sunnah
 
 ## Script R-1
 ```
@@ -19,6 +20,7 @@ network 1.1.1.1 0.0.0.0
 network 12.12.12.0 0.0.0.255
 
 router bgp 123
+network 14.14.14.0 mask 255.255.255.0
 neighbor 2.2.2.2 remote-as 123
 neighbor 14.14.14.4 remote-as 262145
 
@@ -85,6 +87,7 @@ network 3.3.3.3 0.0.0.0 area 0
 network 23.23.23.0 0.0.0.255 area 0
 
 router bgp 123
+network 34.34.34.0 mask 255.255.255.0
 neighbor 2.2.2.2 remote-as 123
 neighbor 34.34.34.4 remote-as 262145
 
@@ -108,6 +111,8 @@ ip address 14.14.14.4 255.255.255.0
 
 router bgp 262145
 network 4.4.4.4 mask 255.255.255.255
+network 14.14.14.0 mask 255.255.255.0
+network 34.34.34.0 mask 255.255.255.0
 neighbor 14.14.14.1 remote-as 123
 neighbor 34.34.34.3 remote-as 123
 ```
