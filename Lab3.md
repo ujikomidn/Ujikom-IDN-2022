@@ -23,6 +23,7 @@ network 12.12.12.0 0.0.0.255
 router bgp 123
 network 14.14.14.0 mask 255.255.255.0
 neighbor 2.2.2.2 remote-as 123
+neighbor 2.2.2.2 update-source loopback 0
 neighbor 14.14.14.4 remote-as 262145
 
 key chain fkm
@@ -90,6 +91,7 @@ network 23.23.23.0 0.0.0.255 area 0
 router bgp 123
 network 34.34.34.0 mask 255.255.255.0
 neighbor 2.2.2.2 remote-as 123
+neighbor 2.2.2.2 update-source loopback 0
 neighbor 34.34.34.4 remote-as 262145
 
 interface Ethernet0/1
