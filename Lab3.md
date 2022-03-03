@@ -4,7 +4,7 @@ Konfigurasi untuk Lab 3 Ujikom By: A Sunnah
 
 ## Script R-1
 ```
-hostname FKM-01
+hostname A-Sunnah-R01
 interface Loopback0
 ip address 1.1.1.1 255.255.255.255
 interface Ethernet0/0
@@ -32,7 +32,7 @@ ip authentication key-chain eigrp 10 fkm
 
 ## Script R-2
 ```
-hostname FKM-02
+hostname A-Sunnah-R02
 interface Loopback0
 ip address 2.2.2.2 255.255.255.255
 interface Ethernet0/0
@@ -70,7 +70,7 @@ ip ospf message-digest-key 1 md5 fkm
 
 ## Script R-3
 ```
-hostname FKM-02
+hostname A-Sunnah-R03
 interface Loopback0
 ip address 3.3.3.3 255.255.255.255
 interface Ethernet0/0
@@ -96,7 +96,7 @@ ip ospf message-digest-key 1 md5 fkm
 
 ## Script R-4
 ```
-hostname FKM-02
+hostname A-Sunnah-R01
 interface Loopback0
 ip address 4.4.4.4 255.255.255.255
 interface Ethernet0/0
