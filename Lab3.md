@@ -26,12 +26,12 @@ neighbor 2.2.2.2 remote-as 123
 neighbor 2.2.2.2 update-source loopback 0
 neighbor 14.14.14.4 remote-as 262145
 
-key chain fkm
+key chain a-sunnah
 key 1
 key-string eigrp
 interface Ethernet0/0
 ip authentication mode eigrp 10 md5
-ip authentication key-chain eigrp 10 fkm
+ip authentication key-chain eigrp 10 a-sunnah
 ```
 
 ## Script R-2
@@ -61,15 +61,15 @@ neighbor 12.12.12.1 route-reflector-client
 neighbor 23.23.23.3 remote-as 123
 neighbor 23.23.23.3 route-reflector-client
 
-key chain fkm
+key chain a-sunnah
 key 1
 key-string eigrp
 interface Ethernet0/0
 ip authentication mode eigrp 10 md5
-ip authentication key-chain eigrp 10 fkm
+ip authentication key-chain eigrp 10 a-sunnah
 interface Ethernet0/1
 ip ospf authentication message-digest
-ip ospf message-digest-key 1 md5 fkm
+ip ospf message-digest-key 1 md5 a-sunnah
 ```
 
 ## Script R-3
@@ -96,7 +96,7 @@ neighbor 34.34.34.4 remote-as 262145
 
 interface Ethernet0/1
 ip ospf authentication message-digest
-ip ospf message-digest-key 1 md5 fkm
+ip ospf message-digest-key 1 md5 a-sunnah
 ```
 
 
