@@ -1,6 +1,6 @@
-# Lab 3
+# Lab 4
 
-Konfigurasi untuk Lab 3 Ujikom 
+Konfigurasi untuk Lab 4 Ujikom 
 
 By: A Sunnah
 
@@ -21,11 +21,11 @@ ip nat inside
 
 interface ethernet 0/1.10
 encapsulation dot1Q 10
-ip adddress 192.168.10.1 255.255.255.0
+ip address 192.168.10.1 255.255.255.0
 
 interface ethernet 0/1.20
 encapsulation dot1Q 20
-ip adddress 192.168.20.1 255.255.255.0
+ip address 192.168.20.1 255.255.255.0
 
 service dhcp
 ip dhcp pool VLAN-10
@@ -41,7 +41,7 @@ ip dhcp excluded-address 192.168.20.1 192.168.20.10
 access-list 1 permit any
 ip access-list extended A-SUNNAH-RULES
 1 deny ip 192.168.20.0 0.0.0.255 host 52.187.5.176
-2147483647 permit ip any any
+100 permit ip any any
 
 interface ethernet 0/0
 ip access-group A-SUNNAH-RULES out
@@ -65,7 +65,6 @@ channel-group 1 mode desirable
 interface port-channel 1
 switchport mode access
 description ETHERCHANNEL-TO-SW2
-switchport trunk encapsulation dot1q
 switchport mode trunk
 
 interface ethernet 0/0
@@ -87,12 +86,10 @@ vtp password MUPENG
 interface range ethernet 0/1-2
 switchport mode access
 description ETHERCHANNEL-TO-SW1
-channel-group 1 mode desirable
+channel-group 1 mode auto
 
 interface port-channel 1
-switchport mode access
 description ETHERCHANNEL-TO-SW1
-switchport trunk encapsulation dot1q
 switchport mode trunk
 
 interface ethernet 0/0
