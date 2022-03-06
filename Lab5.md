@@ -2,6 +2,8 @@
 
 Konfigurasi untuk Lab 5 Ujikom
 
+By: Andiama
+
 ## Script R1
 ```
 host R1
