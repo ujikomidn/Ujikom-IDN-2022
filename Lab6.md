@@ -2,6 +2,8 @@
 
 Konfigurasi untuk Lab 6 Ujikom
 
+By: A Sunnah & Andiama
+
 ## Step by step WLAN
 
 Scan Network > Start > Connect ke AP > centang semua Security Profile + Insert Password
