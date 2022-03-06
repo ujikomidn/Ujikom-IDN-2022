@@ -162,3 +162,33 @@ Apabila kalian ingin mengubah password, bisa langsung ke
 
 Disini, kalian dapat mengubah username, password, maupun nama pemilik akun tersebut
 ![image](https://user-images.githubusercontent.com/100014814/156908807-c5906b13-1b38-40a2-960e-3b1659cb4e76.png)
+
+## SNMP on Mikrotik
+Pertama tama, tambahkan IP Address agar dapat di ping oleh kedua PC
+```
+ip address add address=192.168.10.1/24 interface=ether1
+ip address add address=192.168.20.1/24 interface=ether2
+```
+Kemudian tambahkan setting SNMP pada Mikrotik
+```
+[admin@MikroTik] > snmp set enabled=yes
+[admin@MikroTik] > snmp community set name=SNMPIDN 0
+[admin@MikroTik] > snmp community print             
+Flags: * - default, X - disabled 
+ #    NAME     ADDRESSES                                      SECURITY   READ-ACCESS WRITE-ACCESS
+ 0 *  SNMPIDN  ::/0                                           none       yes         no  
+[admin@MikroTik] > snmp print
+          enabled: yes
+          contact: 
+         location: 
+        engine-id: 
+      trap-target: 
+   trap-community: SNMPIDN
+     trap-version: 1
+  trap-generators: temp-exception
+```
+Lalu pada Server Linux, install dan coba SNMP
+```
+aidan@ubuntu:~$ sudo apt-get install snmp
+aidan@ubuntu:~$ snmpwalk -v2c -c SNMPIDN 192.168.10.1
+```
