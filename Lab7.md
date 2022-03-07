@@ -77,8 +77,8 @@ Thanks for using MariaDB!
 Next, buat database, user dan password untuk MariaDB kita.
 ```
 sudo mysql -u root -p
-MariaDB [(none)]> create database idndb character set utf8 collate utf8_bin;
-MariaDB [(none)]> grant all privileges on idndb.* to 'usermantab'@'localhost' identified by 'farrosjoss';
+MariaDB [(none)]> create database idnzabbix character set utf8 collate utf8_bin;
+MariaDB [(none)]> grant all privileges on idnzabbix.* to 'usermantab'@'localhost' identified by 'farrosjoss';
 MariaDB [(none)]> flush privileges;
 MariaDB [(none)]> exit
 ```
@@ -107,7 +107,7 @@ Selanjutnya, ubah konfigurasi untuk Server Zabbix
 ```
 sudo nano /etc/zabbix/zabbix_server.conf
 >>>DBHost=localhost
->>>DBName=idndb
+>>>DBName=idnzabbix
 >>>DBUser=usermantab
 >>>DBPassword=farrosjoss
 ```
@@ -163,6 +163,32 @@ Apabila kalian ingin mengubah password, bisa langsung ke
 Disini, kalian dapat mengubah username, password, maupun nama pemilik akun tersebut
 ![image](https://user-images.githubusercontent.com/100014814/156908807-c5906b13-1b38-40a2-960e-3b1659cb4e76.png)
 
+## Cacti Installation
+Untuk Cacti, kita tinggal perlu mengedit beberapa hal.
+```
+sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+>>>collation-server = utf8mb4_unicode_ci
+>>>tmp_table_size = 64M
+>>>join_buffer_size = 64M
+>>>innodb_file_format = Barracuda
+>>>innodb_large_prefix = 1
+>>>max_heap_table_size = 128M
+>>>innodb_io_capacity = 5000
+>>>innodb_io_capacity_max = 10000
+>>>innodb_buffer_pool_size = 512M
+>>>innodb_flush_log_at_timeout = 3
+>>>innodb_read_io_threads = 32
+>>>innodb_write_io_threads = 16
+sudo systemctl restart mariadb
+```
+Lalu buat Database dan masukkan user yang telah kita buat sebelumnya pada MySQL
+```
+sudo mysql
+MariaDB [(none)]> create database idncacti character set utf8mb4 collate utf8mb4_unicode_ci;
+MariaDB [(none)]> GRANT ALL ON idncacti.* TO usermantab@localhost identified by 'farrosjoss';
+MariaDB [(none)]> flush privileges;
+MariaDB [(none)]> exit
+```
 ## SNMP on Mikrotik
 Pertama tama, tambahkan IP Address agar dapat di ping oleh kedua PC
 ```
