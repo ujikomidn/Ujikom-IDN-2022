@@ -169,7 +169,7 @@ Pertama tama, tambahkan IP Address agar dapat di ping oleh kedua PC
 ip address add address=192.168.10.1/24 interface=ether1
 ip address add address=192.168.20.1/24 interface=ether2
 ```
-Kemudian tambahkan setting SNMP pada Mikrotik
+Kemudian tambahkan setting SNMP pada MikroTik
 ```
 [admin@MikroTik] > snmp set enabled=yes
 [admin@MikroTik] > snmp community set name=SNMPIDN 0
@@ -192,3 +192,17 @@ Lalu pada Server Linux, install dan coba SNMP
 aidan@ubuntu:~$ sudo apt-get install snmp
 aidan@ubuntu:~$ snmpwalk -v2c -c SNMPIDN 192.168.10.1
 ```
+Pada server Zabbix, pergi ke
+**Configuration > Hosts > Create Host**
+![image](https://user-images.githubusercontent.com/100014814/156949568-c2ad96dc-b367-42a5-a585-75907bfc7a7b.png)
+
+Kemudian buat konfigurasi seperti dibawah
+![image](https://user-images.githubusercontent.com/100014814/156949706-60f50df6-95d0-46b4-b9a0-83907113de3d.png)
+
+Lalu tambahkan macro untuk SNMP MikroTik pada menu
+**Macro**
+![image](https://user-images.githubusercontent.com/100014814/156950300-b036cbdc-7e8e-48b2-98c9-9f83cbb3bda3.png)
+
+Terakhir, tambahkan Template MikroTik SNMP pada menu
+**Templates**
+![image](https://user-images.githubusercontent.com/100014814/156950892-819da6ad-38fc-4dbe-97ec-82836851c059.png)
