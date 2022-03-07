@@ -163,6 +163,7 @@ Apabila kalian ingin mengubah password, bisa langsung ke
 Disini, kalian dapat mengubah username, password, maupun nama pemilik akun tersebut
 ![image](https://user-images.githubusercontent.com/100014814/156908807-c5906b13-1b38-40a2-960e-3b1659cb4e76.png)
 
+
 ## Cacti Installation
 Untuk Cacti, kita tinggal perlu mengedit beberapa hal.
 ```
@@ -188,6 +189,61 @@ MariaDB [(none)]> create database idncacti character set utf8mb4 collate utf8mb4
 MariaDB [(none)]> GRANT ALL ON idncacti.* TO usermantab@localhost identified by 'farrosjoss';
 MariaDB [(none)]> flush privileges;
 MariaDB [(none)]> exit
+```
+Lalu masukkan Data untuk Time Zone ke dalam MySQL
+```
+sudo mysql mysql < /usr/share/mysql/mysql_test_data_timezone.sql  
+sudo mysql
+MariaDB [(none)]> grant select on mysql.time_zone_name to usermantab@localhost;
+MariaDB [(none)]> flush privileges;
+MariaDB [(none)]> exit
+```
+Selanjutnya, install Cacti beserta dependencynya
+```
+sudo apt install rrdtool snmp snmpd snmp-mibs-downloader libsnmp-dev
+sudo wget https://www.cacti.net/downloads/cacti-latest.tar.gz
+sudo mkdir /var/www/html/cacti
+sudo tar xzf cacti-latest.tar.gz -C /var/www/html/cacti
+sudo mv /var/www/html/cacti/cacti-1.2.19/* /var/www/html/cacti/
+sudo mysql cactidb < /var/www/html/cacti/cacti.sql
+sudo chown -R www-data:www-data /var/www/html/cacti/
+sudo chmod -R 775 /var/www/html/cacti/
+```
+Setelah itu, konfigurasikan agar Cacti menggunakan database yang telah kita berikan
+```
+sudo nano /var/www/html/cacti/include/config.php
+
+********Edit data agar seperti dibawah ini********
+$database_type = 'mysql';
+$database_default = 'idncacti';
+$database_hostname = 'localhost';
+$database_username = 'usermantab';
+$database_password = 'farrosjoss';
+$database_port = '3306';
+```
+Kemudian konfigurasikan Apache agar dapat berjalan untuk Cacti
+```
+sudo nano /etc/apache2/sites-available/cacti.conf
+
+********Tambahkan line dibawah ke dalam cacti.conf yang baru dibuat********
+Alias /cacti    /var/www/html/cacti
+<Directory /var/www/html/cacti/>
+<IfModule mod_authz_core.c>
+Require all granted
+</IfModule>
+</Directory>
+```
+Terakhir, test Apache untuk Cacti. Jika outputnya "Syntax OK", maka langsung restart daemon Apache
+```
+sudo apachectl configtest
+sudo systemctl restart apache2
+```
+**Jika mendapat error "Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message", lakukan seperti dibawah ini baru lakukan hal diatas*
+```
+sudo nano /etc/apache2/apache2.conf
+
+********Tambahkan line dibawah ke bagian paling bawah konfigurasi Apache********
+ServerName localhost
 ```
 ## SNMP on Mikrotik
 Pertama tama, tambahkan IP Address agar dapat di ping oleh kedua PC
