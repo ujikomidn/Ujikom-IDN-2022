@@ -4,6 +4,11 @@ Konfigurasi untuk Lab 4 Ujikom
 
 By: A Sunnah
 
+## Table of Contents
+- [Script R-1](#script-r-1)
+- [Script SW-1](#script-sw-1)
+- [Script SW-2](#script-sw-2)
+
 ## Script R-1
 ```
 hostname A-SUNNAH-R1
