@@ -3,13 +3,19 @@
 Konfigurasi untuk Lab 6 Ujikom
 
 By: A Sunnah & Andiama
+## Table of Contents
+- [Step by step WLAN](#step-by-step-wlan)
+- [Setting DHCP Client dan DHCP Server](#setting-dhcp-client-dan-dhcp-server)
+- [Mematikan akses WinBox bagi Client 1](#mematikan-akses-winbox-bagi-client-1)
+- [Setup Hotspot untuk Client](#setup-hotspot-untuk-client)
+- [Blocking Detik.com](#blocking-detikcom)
 
 ## Step by step WLAN
 
 Scan Network > Start > Connect ke AP > centang semua Security Profile + Insert Password
 
 
-## Setting DHCP Client & DHCP Server
+## Setting DHCP Client dan DHCP Server
 ```
 ip dhcp-client add interface=wlan1 
 ip address add address=172.16.10.1/24 interface=ether2
