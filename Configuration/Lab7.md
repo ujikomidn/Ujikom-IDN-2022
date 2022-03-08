@@ -4,20 +4,20 @@ Konfigurasi untuk Lab 7 Ujikom
 
 Made by: Andiama
 
-- [Lab 7](#lab-7)
-  * [Zabbix Installation](#zabbix-installation)
-    + [LAMP Server Installation](#lamp-server-installation)
-    + [MariaDB Installation](#mariadb-installation)
-    + [Zabbix Server Installation](#zabbix-server-installation)
-      - [Zabbix Server Configuration](#zabbix-server-configuration)
-      - [Zabbix Agent Configuration](#zabbix-agent-configuration)
-    + [Zabbix Frontend Installation](#zabbix-frontend-installation)
-  * [Cacti Installation](#cacti-installation)
-    + [MariaDB Configuration for Cacti](#mariadb-configuration-for-cacti)
-    + [Cacti Installation and Configuration](#cacti-installation-and-configuration)
-    + [Apache Configuration for Cacti](#apache-configuration-for-cacti)
-    + [Cacti Frontend Installation](#cacti-frontend-installation)
-  * [SNMP on Mikrotik](#snmp-on-mikrotik)
+## Table of Contents
+- [Zabbix Installation](#zabbix-installation)
+  * [LAMP Server Installation](#lamp-server-installation)
+  * [MariaDB Installation](#mariadb-installation)
+  * [Zabbix Server Installation](#zabbix-server-installation)
+    + [Zabbix Server Configuration](#zabbix-server-configuration)
+    + [Zabbix Agent Configuration](#zabbix-agent-configuration)
+  * [Zabbix Frontend Installation](#zabbix-frontend-installation)
+- [Cacti Installation](#cacti-installation)
+  * [MariaDB Configuration for Cacti](#mariadb-configuration-for-cacti)
+  * [Cacti Installation and Configuration](#cacti-installation-and-configuration)
+  * [Apache Configuration for Cacti](#apache-configuration-for-cacti)
+  * [Cacti Frontend Installation](#cacti-frontend-installation)
+- [SNMP on Mikrotik](#snmp-on-mikrotik)
 
 ## Zabbix Installation
 
