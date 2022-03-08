@@ -3,6 +3,11 @@
 Konfigurasi untuk Lab 3 Ujikom 
 
 By: A Sunnah
+## Table of Contents
+- [Script R-1](#script-r-1)
+- [Script R-2](#script-r-2)
+- [Script R-3](#script-r-3)
+- [Script R-4](#script-r-4)
 
 ## Script R-1
 ```
