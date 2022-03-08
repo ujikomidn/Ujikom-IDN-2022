@@ -4,6 +4,11 @@ Konfigurasi untuk Lab 5 Ujikom
 
 By: Andiama
 
+## Table of Contents
+- [Script R1](#script-r1)
+- [Script R2](#script-r2)
+- [Script R3](#script-r3)
+
 ## Script R1
 ```
 host R1
