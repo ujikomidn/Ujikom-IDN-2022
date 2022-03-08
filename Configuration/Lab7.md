@@ -4,6 +4,21 @@ Konfigurasi untuk Lab 7 Ujikom
 
 Made by: Andiama
 
+- [Lab 7](#lab-7)
+  * [Zabbix Installation](#zabbix-installation)
+    + [LAMP Server Installation](#lamp-server-installation)
+    + [MariaDB Installation](#mariadb-installation)
+    + [Zabbix Server Installation](#zabbix-server-installation)
+      - [Zabbix Server Configuration](#zabbix-server-configuration)
+      - [Zabbix Agent Configuration](#zabbix-agent-configuration)
+    + [Zabbix Frontend Installation](#zabbix-frontend-installation)
+  * [Cacti Installation](#cacti-installation)
+    + [MariaDB Configuration for Cacti](#mariadb-configuration-for-cacti)
+    + [Cacti Installation and Configuration](#cacti-installation-and-configuration)
+    + [Apache Configuration for Cacti](#apache-configuration-for-cacti)
+    + [Cacti Frontend Installation](#cacti-frontend-installation)
+  * [SNMP on Mikrotik](#snmp-on-mikrotik)
+
 ## Zabbix Installation
 
 ### LAMP Server Installation
@@ -165,6 +180,8 @@ Disini, kalian dapat mengubah username, password, maupun nama pemilik akun terse
 
 
 ## Cacti Installation
+
+### MariaDB Configuration for Cacti
 Untuk Cacti, kita tinggal perlu mengedit beberapa hal.
 ```
 sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
@@ -198,6 +215,8 @@ MariaDB [(none)]> grant select on mysql.time_zone_name to usermantab@localhost;
 MariaDB [(none)]> flush privileges;
 MariaDB [(none)]> exit
 ```
+
+### Cacti Installation and Configuration
 Selanjutnya, install Cacti beserta dependencynya
 ```
 sudo apt install rrdtool snmp snmpd snmp-mibs-downloader libsnmp-dev
@@ -205,7 +224,7 @@ sudo wget https://www.cacti.net/downloads/cacti-latest.tar.gz
 sudo mkdir /var/www/html/cacti
 sudo tar xzf cacti-latest.tar.gz -C /var/www/html/cacti
 sudo mv /var/www/html/cacti/cacti-1.2.19/* /var/www/html/cacti/
-sudo mysql cactidb < /var/www/html/cacti/cacti.sql
+sudo mysql idncacti < /var/www/html/cacti/cacti.sql
 sudo chown -R www-data:www-data /var/www/html/cacti/
 sudo chmod -R 775 /var/www/html/cacti/
 ```
@@ -221,6 +240,8 @@ $database_username = 'usermantab';
 $database_password = 'farrosjoss';
 $database_port = '3306';
 ```
+
+### Apache Configuration for Cacti
 Kemudian konfigurasikan Apache agar dapat berjalan untuk Cacti
 ```
 sudo nano /etc/apache2/sites-available/cacti.conf
@@ -245,6 +266,9 @@ sudo nano /etc/apache2/apache2.conf
 ********Tambahkan line dibawah ke bagian paling bawah konfigurasi Apache********
 ServerName localhost
 ```
+
+### Cacti Frontend Installation
+
 ## SNMP on Mikrotik
 Pertama tama, tambahkan IP Address agar dapat di ping oleh kedua PC
 ```
