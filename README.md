@@ -15,6 +15,8 @@ Konfigurasi Lab Ujikom 1-10 untuk SMK MQ.
 
 [Lab 7](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab7.md)
 
+[Lab 9](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab9.md)
+
 ## Downloading
 Untuk mendownload lab diatas, klik
 **Code > Download ZIP**
