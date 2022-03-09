@@ -20,7 +20,7 @@ Untuk mendownload lab diatas, klik
 **Code > Download ZIP**
 ![image](https://user-images.githubusercontent.com/100014814/157188328-9a6b93a9-465b-4535-ad4d-ce7697ca6a32.png)
 
-Untuk membaca File .md yang telah didownload, gunakan [MarkdownPad](http://markdownpad.com/) (bukan paid promote) untuk rasa membaca yang mirip dengan GitHub.
+Untuk membaca File .md yang telah didownload, gunakan [MarkdownPad](http://markdownpad.com/) atau [Visual Studio Code](https://code.visualstudio.com/download#) (bukan paid promote) untuk rasa membaca yang mirip dengan GitHub.
 
 ## Contributing
 Ideas and Support by A Sunnah, Implementation from Andiama, and Scripts from Andiama and A Sunnah
