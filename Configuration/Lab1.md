@@ -5,18 +5,21 @@ Konfigurasi untuk Lab 1 Ujikom
 By: A Sunnah
 
 ## Network Scenario
-```
-R-Core-01-Network - R-ABR:    172.16.1.0/30
-R-ABR - R-ASBR-01:            172.16.1.4/30
-R-ABR - R-ASBR-02:            172.16.1.8/30
-R-ASBR-01 - R-ST-01:          172.16.1.12/30
-R-ASBR-02 - R-ST-01:          172.16.1.16/30
 
-VLAN-100:                     192.168.1.0/24
-VLAN-101:                     192.168.2.0/24
-VLAN-102:                     192.168.3.0/24
-Vlan-103:                     192.168.4.0/24
-```
+| Device Name               | IP Address |
+| ------------------------- | ---------- |
+| R-Core-01-Network - R-ABR:| 172.16.1.0/30 |
+| R-ABR - R-ASBR-01:        | 172.16.1.4/30 |
+| R-ABR - R-ASBR-02:        | 172.16.1.8/30 |
+| R-ASBR-01 - R-ST-01:      | 172.16.1.12/30 |
+| R-ASBR-02 - R-ST-01:      | 172.16.1.16/30 |
+
+| VLAN Name | IP Address |
+| --------- | ---------- |
+| VLAN-100: | 192.168.1.0/24 |
+| VLAN-101: | 192.168.2.0/24 |
+| VLAN-102: | 192.168.3.0/24 |
+| VLAN-103: | 192.168.4.0/24 |
 
 ## Script R-Core-01-Network
 ```
