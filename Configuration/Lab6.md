@@ -20,9 +20,13 @@ Scan Network > Start > Connect ke AP > centang semua Security Profile + Insert P
 ip dhcp-client add interface=wlan1 
 ip address add address=172.16.10.1/24 interface=ether2
 ip address add address=172.16.20.1/24 interface=ether3
+ip pool add name=dhcp_pool0 ranges=172.16.10.11-172.16.10.254
+ip pool add name=dhcp_pool1 ranges=172.16.20.11-172.16.20.254
+ip dhcp-server add address-pool=dhcp_pool0 disabled=no interface=ether2 name=dhcp1
+ip dhcp-server add address-pool=dhcp_pool1 disabled=no interface=ether3 name=dhcp2
+ip dhcp-server network add address=172.16.10.0/24 dns-server=8.8.8.8 gateway=172.16.10.1
+ip dhcp-server network add address=172.16.20.0/24 dns-server=8.8.8.8 gateway=172.16.20.1
 ```
-DHCP Setup > ether2 > Address to Give Out: 11-255 > DNS Server 8.8.8.8 > ulangi untuk ether3
-
 
 ## Mematikan akses WinBox bagi Client 1
 ```
