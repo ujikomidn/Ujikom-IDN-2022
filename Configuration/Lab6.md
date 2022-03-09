@@ -40,8 +40,7 @@ Hotspot Setup > ether2 > DNS Name:(bebas)
 ## Blocking Detik.com
 Buka cmd > nslookup detik.com
 ```
-ip firewall address-list add address=203.190.242.211               
-list: detik.com
-ip firewall address-list add address=103.49.221.211 
-list: detik.com
+ip firewall address-list add address=203.190.242.211 list=detik.com
+ip firewall address-list add address=103.49.221.211 list=detik.com
+ip firewall filter add chain=forward dst-address-list=detik.com action=drop
 ```
