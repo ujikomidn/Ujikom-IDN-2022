@@ -6,6 +6,13 @@ By: A Sunnah
 
 ## Network Scenario
 
+| VLAN Name | IP Address |
+| --------- | ---------- |
+| VLAN-100: | 192.168.1.0/24 |
+| VLAN-101: | 192.168.2.0/24 |
+| VLAN-102: | 192.168.3.0/24 |
+| VLAN-103: | 192.168.4.0/24 |
+
 | Device Name               | IP Address |
 | ------------------------- | ---------- |
 | R-Core-01-Network - R-ABR:| 172.16.1.0/30 |
@@ -13,13 +20,6 @@ By: A Sunnah
 | R-ABR - R-ASBR-02:        | 172.16.1.8/30 |
 | R-ASBR-01 - R-ST-01:      | 172.16.1.12/30 |
 | R-ASBR-02 - R-ST-01:      | 172.16.1.16/30 |
-
-| VLAN Name | IP Address |
-| --------- | ---------- |
-| VLAN-100: | 192.168.1.0/24 |
-| VLAN-101: | 192.168.2.0/24 |
-| VLAN-102: | 192.168.3.0/24 |
-| VLAN-103: | 192.168.4.0/24 |
 
 ## Script R-Core-01-Network
 ```
@@ -87,7 +87,14 @@ add area-id=0.0.0.1 name=AREA-01
 /routing ospf network
 add area=AREA-01 network=172.16.1.4/30
 
-Konfigurasi firewal dengan ketentuan jaringan pada router R-ST-01 tidak dapat melakukan ping ke R-ASBR-01,R-ASBR-02,R-ABR dan R-Core-01-Network
+/ip firewall address-list
+add address=172.16.1.0/24 list=IP-INTERNAL
+add address=192.168.1.0/24 list=IP-CLIENT
+add address=192.168.2.0/24 list=IP-CLIENT
+add address=192.168.3.0/24 list=IP-CLIENT
+add address=192.168.4.0/24 list=IP-CLIENT
+/ip firewall filter
+add action=drop chain=input dst-address-list=IP-INTERNAL protocol=icmp src-address-list=IP-CLIENT
 ```
 
 ## Script R-ASBR-02
@@ -110,7 +117,14 @@ add area-id=0.0.0.2 name=AREA-02
 /routing ospf network
 add area=AREA-02 network=172.16.1.8/30
 
-Konfigurasi firewal dengan ketentuan jaringan pada router R-ST-01 tidak dapat melakukan ping ke R-ASBR-01,R-ASBR-02,R-ABR dan R-Core-01-Network
+/ip firewall address-list
+add address=172.16.1.0/24 list=IP-INTERNAL
+add address=192.168.1.0/24 list=IP-CLIENT
+add address=192.168.2.0/24 list=IP-CLIENT
+add address=192.168.3.0/24 list=IP-CLIENT
+add address=192.168.4.0/24 list=IP-CLIENT
+/ip firewall filter
+add action=drop chain=input dst-address-list=IP-INTERNAL protocol=icmp src-address-list=IP-CLIENT
 ```
 
 ## Script R-ST-01
