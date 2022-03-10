@@ -2,7 +2,7 @@
 
 Konfigurasi untuk Lab 7 Ujikom
 
-Made by: Andiama
+By: Andiama
 
 ## Table of Contents
 - [Zabbix Installation](#zabbix-installation)
@@ -25,7 +25,7 @@ Made by: Andiama
 LAMP merupakan singkatan dari Linux, Apache, MariaDB dan PHP. Mari kita install semuanya dengan 2 command.
 ```
 sudo apt update && sudo apt upgrade
-sudo apt install apache2 php php-mysql php-mysqlnd php-ldap php-bcmath php-mbstring php-gd php-pdo php-xml libapache2-mod-php
+sudo apt install apache2 php php-mysql php-mysqlnd php-ldap php-bcmath php-mbstring php-gd php-pdo php-xml libapache2-mod-php php-gmp php-snmp
 ```
 
 Selanjutnya, ubah beberapa hal dalam "php.ini". Kalian bisa menggunakan F6 ataupun CTRL + W untuk mencari line yang diperlukan
@@ -35,9 +35,14 @@ sudo nano /etc/php/7.4/apache2/php.ini
 >>>upload_max_filesize = 2M
 >>>max_execution_time = 300
 >>>max_input_time = 300
->>>memory_limit = 128M
+>>>memory_limit = 512M
 >>>session.auto_start = 0
 >>>mbstring.func_overload = 0
+>>>date.timezone = Asia/Jakarta
+>>>extension=php_gmp
+
+sudo nano /etc/php/7.4/cli/php.ini
+>>>max_execution_time = 0
 >>>date.timezone = Asia/Jakarta
 ```
 
@@ -145,7 +150,7 @@ sudo systemctl restart zabbix-agent.service
 ```
 
 ### Zabbix Frontend Installation
-Sekarang, buka IP VM kalian lalu "/zabbix". Semisal IP VM saya adalah 192.168.111.143, maka buka di browser "192.168.111.143/zabbix"
+Sekarang, buka IP VM kalian lalu masukkan "/zabbix". Semisal IP VM saya adalah 192.168.111.143, maka yang saya buka di browser "192.168.111.143/zabbix"
 
 Jika sudah, maka akan terlihat seperti ini:
 ![image](https://user-images.githubusercontent.com/100014814/156908374-2d4b6bdb-01b1-4b8a-9d75-e75136e41677.png)
@@ -185,18 +190,21 @@ Disini, kalian dapat mengubah username, password, maupun nama pemilik akun terse
 Untuk Cacti, kita tinggal perlu mengedit beberapa hal.
 ```
 sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+>>>character-set-server = utf8mb4
 >>>collation-server = utf8mb4_unicode_ci
+>>>max_heap_table_size = 128M
 >>>tmp_table_size = 64M
->>>join_buffer_size = 64M
+>>>join_buffer_size = 128M
 >>>innodb_file_format = Barracuda
 >>>innodb_large_prefix = 1
->>>max_heap_table_size = 128M
->>>innodb_io_capacity = 5000
->>>innodb_io_capacity_max = 10000
->>>innodb_buffer_pool_size = 512M
+>>>innodb_buffer_pool_size = 1G
 >>>innodb_flush_log_at_timeout = 3
 >>>innodb_read_io_threads = 32
 >>>innodb_write_io_threads = 16
+>>>innodb_io_capacity = 5000
+>>>innodb_io_capacity_max = 10000
+>>>innodb_doublewrite=OFF
+>>>innodb_buffer_pool_instances=5
 sudo systemctl restart mariadb
 ```
 Lalu buat Database dan masukkan user yang telah kita buat sebelumnya pada MySQL
@@ -268,6 +276,28 @@ ServerName localhost
 ```
 
 ### Cacti Frontend Installation
+Seperti instalasi Zabbix, buka IP VM yang dimiliki lalu tambahkan "/cacti". Misalnya "192.168.111.143/cacti"
+
+Masuk dengan kredensial default, yaitu "admin/admin"
+![image](https://user-images.githubusercontent.com/100014814/157605745-7e5d16bc-55f4-4d6f-a8f1-b078c19eda2e.png)
+
+Ubah password Cacti sesuka kalian, kali ini saya akan menggunakan "Farr0$joss"
+![image](https://user-images.githubusercontent.com/100014814/157606509-af7aab35-163a-4551-a6af-88102ca129dd.png)
+
+Centang agreementnya kemudian klik "Begin"
+![image](https://user-images.githubusercontent.com/100014814/157606963-6a969d4c-4440-4210-9dc1-0f69854fe02a.png)
+
+Klik "Next" jika dependency kalian sudah aman sentosa
+![image](https://user-images.githubusercontent.com/100014814/157615339-ecad1d86-9606-4342-bb7e-1b7b257ff1fc.png)
+
+Set Cacti sebagai Primary Server kemudian pastikan Database Local sudah sesuai dengan yang kita masukkan sebelumnya
+![image](https://user-images.githubusercontent.com/100014814/157615626-f6d4b4eb-ff80-45a1-9cfe-20fd691b68d4.png)
+
+Klik "Next" hingga melihat page ini. Jika sudah, klik "I have read this statement" kemudian klik "Next" lagi
+![image](https://user-images.githubusercontent.com/100014814/157615936-4f8608a1-59db-4c5e-9ac0-86a8362d1d3f.png)
+
+Lalu klik "Next" hingga bertemu page ini. Klik "Confirm Installation" lalu klik "Install"
+![image](https://user-images.githubusercontent.com/100014814/157616397-effe9e21-f433-4d6f-8ebb-7125824c8e43.png)
 
 ## SNMP on Mikrotik
 Pertama tama, tambahkan IP Address agar dapat di ping oleh kedua PC
