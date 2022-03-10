@@ -5,6 +5,8 @@ Konfigurasi Lab Ujikom 1-10 untuk SMK MQ.
 ## Konfigurasi Lab
 [Lab 1](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab1.md)
 
+[Lab 2](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab2.md)
+
 [Lab 3](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab3.md)
 
 [Lab 4](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab4.md)
