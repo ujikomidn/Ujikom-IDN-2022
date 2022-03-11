@@ -299,6 +299,16 @@ Klik "Next" hingga melihat page ini. Jika sudah, klik "I have read this statemen
 Lalu klik "Next" hingga bertemu page ini. Klik "Confirm Installation" lalu klik "Install"
 ![image](https://user-images.githubusercontent.com/100014814/157616397-effe9e21-f433-4d6f-8ebb-7125824c8e43.png)
 
+Selesai menginstall, klik pada tombol "Get Started"
+![image](https://user-images.githubusercontent.com/100014814/157775800-2c5fcfe3-196c-4586-88c3-2b2c57593b55.png)
+
+Jika sudah masuk kedalam Cacti, kita akan langsung ke
+**Configuration > Users**
+![image](https://user-images.githubusercontent.com/100014814/157776159-106065ce-c5fe-44df-8dfa-fe505493a206.png)
+
+Gantilah user admin dengan apapun yang diinginkan
+![image](https://user-images.githubusercontent.com/100014814/157776476-65d4134b-db25-471e-90db-c38cde10838c.png)
+
 ## SNMP on Mikrotik
 Pertama tama, tambahkan IP Address agar dapat di ping oleh kedua PC
 ```
