@@ -338,6 +338,8 @@ Lalu pada Server Linux, install dan coba SNMP
 aidan@ubuntu:~$ sudo apt-get install snmp
 aidan@ubuntu:~$ snmpwalk -v2c -c SNMPIDN 192.168.10.1
 ```
+
+### Zabbix SNMP Setup
 Pada server Zabbix, pergi ke
 **Configuration > Hosts > Create Host**
 ![image](https://user-images.githubusercontent.com/100014814/156949568-c2ad96dc-b367-42a5-a585-75907bfc7a7b.png)
@@ -352,3 +354,12 @@ Lalu tambahkan macro untuk SNMP MikroTik pada menu
 Terakhir, tambahkan Template MikroTik SNMP pada menu
 **Templates**
 ![image](https://user-images.githubusercontent.com/100014814/156950892-819da6ad-38fc-4dbe-97ec-82836851c059.png)
+
+### Cacti SNMP Setup
+Di server Cacti, buka
+**Create > New Device**
+![image](https://user-images.githubusercontent.com/100014814/158086957-9034d80a-6583-43a7-a20d-5b9ea6ab7a4b.png)
+
+
+Masukkan Description, Hostname, Device Template dan SNMP Version 2. Jika sudah sama, klik "Create".
+![image](https://user-images.githubusercontent.com/100014814/158087294-743c9ffa-d948-4583-8185-895a8c7f073e.png)
