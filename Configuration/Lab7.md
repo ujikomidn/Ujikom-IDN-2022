@@ -18,6 +18,8 @@ By: Andiama
   * [Apache Configuration for Cacti](#apache-configuration-for-cacti)
   * [Cacti Frontend Installation](#cacti-frontend-installation)
 - [SNMP on Mikrotik](#snmp-on-mikrotik)
+  * [Zabbix SNMP Setup](#zabbix-snmp-setup)
+  * [Cacti SNMP Setup](#cacti-snmp-setup)
 
 ## Zabbix Installation
 
