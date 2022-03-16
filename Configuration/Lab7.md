@@ -251,6 +251,15 @@ $database_password = 'farrosjoss';
 $database_port = '3306';
 ```
 
+Lalu buat log untuk Cacti dan buat Cron Job untuk Cacti
+```
+sudo touch /var/www/html/cacti/log/cacti.log
+sudo chmod -R 775 /var/www/html/cacti/
+sudo chown -R www-data:www-data /var/www/html/cacti/
+sudo nano /etc/cron.d/cacti
+********Tambahkan line seperti dibawah pada file tersebut********
+*/5 * * * * www-data php /var/www/html/cacti/poller.php > /dev/null 2>&1
+```
 ### Apache Configuration for Cacti
 Kemudian konfigurasikan Apache agar dapat berjalan untuk Cacti
 ```
@@ -362,6 +371,14 @@ Di server Cacti, buka
 **Create > New Device**
 ![image](https://user-images.githubusercontent.com/100014814/158086957-9034d80a-6583-43a7-a20d-5b9ea6ab7a4b.png)
 
-
 Masukkan Description, Hostname, Device Template dan SNMP Version 2. Jika sudah sama, klik "Create".
 ![image](https://user-images.githubusercontent.com/100014814/158087294-743c9ffa-d948-4583-8185-895a8c7f073e.png)
+
+Kemudian scroll kebawah dan tambahkan Graph Template untuk CPU dan Memory
+![image](https://user-images.githubusercontent.com/100014814/158502188-8f49e727-4573-4a6a-bf41-e68cc139559b.png)
+
+Lalu klik "Create Graphs for this Device"
+![image](https://user-images.githubusercontent.com/100014814/158502423-7bdb8f3b-2789-4f4b-8ee4-c815049ee101.png)
+
+Kemudian refresh interface, baru set "In/Out Bits" untuk Interface yang kita gunakan (atau interface yang menghadap PC)
+![image](https://user-images.githubusercontent.com/100014814/158503016-bcdb4e5f-7651-460d-832d-a4cf2ee6c138.png)
