@@ -4,7 +4,7 @@ Konfigurasi untuk Lab 6 Ujikom
 
 By: A Sunnah & Andiama
 
-## Script Router
+## Config Router
 ```
 system identity set name=idnrouter
 ip dhcp-client add disabled=no interface=wlan1
