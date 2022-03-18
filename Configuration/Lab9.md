@@ -5,10 +5,11 @@ Konfigurasi untuk Lab 9 Ujikom
 By: Andiama
 
 ## Table of Contents
-- [Config R1](#Config-R1)
-- [Config R2](#Config-R2)
-- [Config VPCS Kiri](#Config-VPCS-Kiri)
-- [Config VPCS Kanan](#Config-VPCS-Kanan)
+- [Config R1](#config-r1)
+- [Config R2](#config-r2)
+- [Config VPCS Kiri](#config-vpcs-kiri)
+- [Config VPCS Kanan](#config-vpcs-kanan)
+
 ## Config R1
 ```
 system identity set name=R1
