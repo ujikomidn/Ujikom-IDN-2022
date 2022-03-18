@@ -4,12 +4,12 @@ Konfigurasi untuk Lab 3 Ujikom
 
 By: A Sunnah
 ## Table of Contents
-- [Script R-1](#script-r-1)
-- [Script R-2](#script-r-2)
-- [Script R-3](#script-r-3)
-- [Script R-4](#script-r-4)
+- [Config R-1](#config-r-1)
+- [Config R-2](#config-r-2)
+- [Config R-3](#config-r-3)
+- [Config R-4](#config-r-4)
 
-## Script R-1
+## Config R-1
 ```
 hostname A-Sunnah-R01
 interface Loopback0
@@ -39,7 +39,7 @@ ip authentication mode eigrp 10 md5
 ip authentication key-chain eigrp 10 a-sunnah
 ```
 
-## Script R-2
+## Config R-2
 ```
 hostname A-Sunnah-R02
 interface Loopback0
@@ -77,7 +77,7 @@ ip ospf authentication message-digest
 ip ospf message-digest-key 1 md5 a-sunnah
 ```
 
-## Script R-3
+## Config R-3
 ```
 hostname A-Sunnah-R03
 interface Loopback0
@@ -105,7 +105,7 @@ ip ospf message-digest-key 1 md5 a-sunnah
 ```
 
 
-## Script R-4
+## Config R-4
 ```
 hostname A-Sunnah-R01
 interface Loopback0
