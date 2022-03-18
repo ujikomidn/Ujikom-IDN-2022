@@ -5,11 +5,11 @@ Konfigurasi untuk Lab 5 Ujikom
 By: Andiama
 
 ## Table of Contents
-- [Script R1](#script-r1)
-- [Script R2](#script-r2)
-- [Script R3](#script-r3)
+- [Config R1](#config-r1)
+- [Config R2](#config-r2)
+- [Config R3](#config-r3)
 
-## Script R1
+## Config R1
 ```
 host R1
 interface e0/0
@@ -38,7 +38,7 @@ ip authentication key eigrp 10 EIGRP
 delay 8008
 ```
 
-## Script R2
+## Config R2
 ```
 host R2
 interface e0/0
@@ -66,7 +66,7 @@ ip authentication mode eigrp 10 md5
 ip authentication key eigrp 10 EIGRP
 ```
 
-## Script R3
+## Config R3
 ```
 host R3
 interface e0/0
