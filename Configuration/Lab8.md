@@ -37,7 +37,7 @@ Jika sudah, akan terlihat seperti dibawah ini
 ## Install VPN Server
 Pertama tama, cari tahu IP address Server Ubuntu kalian
 ```
-ip a
+aidan@ususbuntu:~$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -46,8 +46,8 @@ ip a
        valid_lft forever preferred_lft forever
 2: ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether 00:50:00:00:01:00 brd ff:ff:ff:ff:ff:ff
-    inet ******192.168.111.140/24****** brd 192.168.111.255 scope global dynamic ens3
-       valid_lft 997sec preferred_lft 997sec
+    inet 192.168.111.140/24 brd 192.168.111.255 scope global dynamic ens3
+       valid_lft 1745sec preferred_lft 1745sec
     inet6 fe80::250:ff:fe00:100/64 scope link
        valid_lft forever preferred_lft forever
 ```
@@ -87,10 +87,18 @@ OpenVPN installation is ready to begin.
 Press any key to continue...
 ```
 
-Terakhir, pastikan service OpenVPN selalu menyala saat startup
+Kemudian pastikan service OpenVPN selalu menyala saat startup.
 ```
 sudo systemctl enable openvpn-server@server.service
 sudo systemctl start openvpn-server@server.service
+```
+
+Terakhir, ambil file .ovpn dari server tersebut ke PC kita menggunakan command seperti dibawah
+
+```
+C:\Users\Andie>ssh aidan@192.168.111.140 "sudo -S cat /root/andie.ovpn" > andie.ovpn
+aidan@192.168.111.140's password:
+[sudo] password for aidan: 
 ```
 
 ## Install File Server
@@ -99,3 +107,32 @@ sudo apt install samba
 sudo systemctl enable smbd
 sudo systemctl start smbd
 ```
+
+Backup konfigurasi default yang dimiliki oleh samba dan buat folder yang akan dipakai untuk berbagi file
+```
+cp /etc/samba/smb.conf /etc/samba/smb.conf.ori
+sudo mkdir -p /srv/samba/share
+sudo chown nobody:nogroup /srv/samba/share/
+```
+
+Lalu edit file smb.conf
+```
+sudo nano /etc/samba/smb.conf
+
+******Taruh di paling bawah******
+[Sharing_Folder]
+    comment = Folder untuk berbagi konten
+    path = /srv/samba/share
+    browsable = yes
+    guest ok = yes
+    read only = no
+    create mask = 0755
+```
+
+Coba akses ke Server menggunakan format "\\(IP Address)" pada File Explorer
+
+![image](https://user-images.githubusercontent.com/100014814/159407448-cd51f38a-bb60-4b3a-90d1-fe460450d608.png)
+
+Jika sudah ada Folder "Sharing_Folder", maka konfigurasi Samba kalian sudah berhasil.
+
+![image](https://user-images.githubusercontent.com/100014814/159407559-a37bbff0-031f-4e44-ac63-d66e0cbb56df.png)
