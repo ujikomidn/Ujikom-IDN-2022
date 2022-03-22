@@ -101,6 +101,148 @@ aidan@192.168.111.140's password:
 [sudo] password for aidan: 
 ```
 
+## Install DNS Server
+```
+sudo apt install bind9
+sudo ufw allow 53
+udo systemctl start bind9.service
+```
+
+Kemudian kita ganti DHCPnya menjadi Static IP
+```
+sudo nano /etc/netplan/00-installer-config.yaml
+********Ubah jadi seperti dibawah ini********
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    enp0s3:
+      dhcp4: false
+      addresses: [192.168.111.140/24]
+      gateway4: 192.168.111.1
+      nameservers:
+        search: [andieidn.com]
+        addresses: [192.168.111.254, 192.168.111.1]
+  version: 2
+*********************************************
+
+
+sudo nano /etc/resolv.conf
+********Ubah jadi seperti dibawah ini********
+nameserver 192.168.111.254
+nameserver 192.168.111.1
+options edns0
+search andieidn.com
+*********************************************
+
+
+sudo nano /etc/hosts
+********Ubah jadi seperti dibawah ini********
+127.0.0.1 localhost
+127.0.1.1 ususbuntu
+192.168.111.140 andieidn.com
+*********************************************
+```
+
+Kemudian konfigurasikan DNS Server tersebut
+```
+sudo nano /etc/bind/named.conf.local
+*****************Buat seperti dibawah tersebut*****************
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "andieidn.com" {
+        type master;
+        file "/etc/bind/db.andieidn";
+};
+***************************************************************
+
+
+sudo cp /etc/bind/db.local /etc/bind/db.andieidn
+sudo nano /etc/bind/db.andieidn
+*****************Buat seperti dibawah tersebut*****************
+;
+; BIND data file for Andie IDN
+;
+$TTL    604800
+@       IN      SOA     ns.andieidn.com. root.andieidn.com. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      ns.andieidn.com.
+@       IN      A       192.168.111.140
+@       IN      MX      10      mail.andieidn.com.
+ns      IN      A       192.168.111.140
+www     IN      CNAME   ns
+mail    IN      A       192.168.111.140
+***************************************************************
+```
+
+Lalu kita tambahkan Reverse Zone
+```
+sudo nano /etc/bind/named.conf.local
+*****************Buat seperti dibawah tersebut*****************
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "andieidn.com" {
+        type master;
+        file "/etc/bind/db.andieidn";
+};
+
+zone "22.168.192.in-addr.arpa" {
+        type master;
+        file "/etc/bind/db.192";
+};
+***************************************************************
+
+
+sudo cp /etc/bind/db.127 /etc/bind/db.192
+sudo nano /etc/bind/db.192
+*****************Buat seperti dibawah tersebut*****************
+;
+; BIND reverse data file for Andie IDN
+;
+$TTL    604800
+@       IN      SOA     ns.andieidn.com. root.andieidn.com. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      ns.andieidn.com.
+1       IN      PTR     ns.andieidn.com.
+1       IN      PTR     www.andieidn.com
+1       IN      PTR     mail.andieidn.com
+***************************************************************
+```
+
+
+Selanjutnya setting DNS Caching
+```
+sudo nano /etc/bind/named.conf.options
+********************Edit seperti di bawah ini********************
+        // If your ISP provided one or more IP addresses for stable
+        // nameservers, you probably want to use them as forwarders.
+        // Uncomment the following block, and insert the addresses replacing
+        // the all-0's placeholder.
+
+         forwarders {
+              9.9.9.9;
+              1.1.1.1;
+        };
+*****************************************************************
+```
+
+Terakhir, restart service BIND9
+```
+systemctl restart bind9.service
+```
 ## Install File Server
 ```
 sudo apt install samba
