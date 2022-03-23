@@ -1,6 +1,6 @@
-# Lab 9
+# Lab 10
 
-Konfigurasi untuk Lab 9 Ujikom
+Konfigurasi untuk Lab 10 Ujikom
 
 By: A Sunnah
 
@@ -34,10 +34,10 @@ ip route add dst-address=192.168.20.0/24 gateway=10.10.10.2
 
 ## Config VPCS Kiri
 ```
-ip 192.168.10.3 255.255.255.0 192.168.10.1
+ip 192.168.10.2 255.255.255.0 192.168.10.1
 ```
 
 ## Config VPCS Kanan
 ```
-ip 192.168.10.4 255.255.255.0 192.168.10.2
+ip 192.168.20.2 255.255.255.0 192.168.20.1
 ```
