@@ -24,7 +24,5 @@ ip hotspot profile add dns-name=ujikom.net hotspot-address=172.16.20.1 name=hspr
 ip hotspot user add name=farros password=keceparah
 tool mac-server mac-winbox set allowed-interface-list=none
 ip firewall filter add chain=input  src-address=!172.16.20.254 protocol=tcp dst-port=8291 action=drop
-ip firewall address-list add address=203.190.242.211 list=detik.com
-ip firewall address-list add address=103.49.221.211 list=detik.com
-ip firewall filter add chain=forward dst-address-list=detik.com action=drop
+ip firewall filter add chain=forward dst-address=119.81.42.42 action=drop
 ```
