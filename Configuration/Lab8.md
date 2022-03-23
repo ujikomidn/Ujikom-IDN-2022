@@ -3,6 +3,13 @@ Konfigurasi untuk Lab 8 Ujikom
 
 By: Andiama
 
+## Table of Contents
+- [Server Configuration](#server-configuration)
+  * [Install SSH Server](#install-ssh-server)
+  * [Install FTP Server](#install-ftp-server)
+  * [Install DNS Server](#install-dns-server)
+  * [Install DHCP Server](#install-dhcp-server)
+
 ## Server Configuration
 
 ### Install SSH Server
