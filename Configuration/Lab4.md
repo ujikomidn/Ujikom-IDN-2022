@@ -102,7 +102,7 @@ switchport mode access
 description TO-PC-A
 switchport access vlan 10
 switchport port-security
-switchport port-security violation restrict
+switchport port-security violation shutdown
 switchport port-security mac-address sticky
 
 interface ethernet 0/3
@@ -110,6 +110,6 @@ switchport mode access
 description TO-PC-B
 switchport access vlan 20
 switchport port-security
-switchport port-security violation shutdown
+switchport port-security violation restrict
 switchport port-security mac-address sticky
 ```
