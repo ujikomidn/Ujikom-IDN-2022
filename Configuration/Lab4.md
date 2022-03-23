@@ -45,7 +45,7 @@ ip dhcp excluded-address 192.168.20.1 192.168.20.10
 
 access-list 1 permit any
 ip access-list extended A-SUNNAH-RULES
-1 deny ip 192.168.20.0 0.0.0.255 host 52.187.5.176
+1 deny ip 192.168.20.0 0.0.0.255 host 119.81.42.42
 100 permit ip any any
 
 interface ethernet 0/0
