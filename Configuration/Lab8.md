@@ -3,7 +3,9 @@ Konfigurasi untuk Lab 8 Ujikom
 
 By: Andiama
 
-## Install SSH Server
+## Server Configuration
+
+### Install SSH Server
 Instalasi SSH Server sangat mudah, seperti dibawah
 ```
 sudo apt update
@@ -12,7 +14,7 @@ sudo systemctl enable ssh
 sudo systemctl start ssh
 ```
 
-## Install FTP Server
+### Install FTP Server
 ```
 sudo apt install vsftpd
 sudo systemctl enable vsftpd
@@ -21,87 +23,7 @@ sudo nano /etc/vsftpd.conf
 >>>write_enable=YES
 ```
 
-## Install Web Server
-```
-sudo apt install apache2
-sudo systemctl enable apache2
-sudo systemctl start apache2
-```
-
-Jika sudah, cek menggunakan command "hostname -I".
-
-Setelah itu, coba masukkan IP yang tertera pada Device yang terhubung.
-Jika sudah, akan terlihat seperti dibawah ini
-![image](https://user-images.githubusercontent.com/100014814/158320238-bf777677-a4a0-4266-aad2-8692b1575485.png)
-
-## Install VPN Server
-Pertama tama, cari tahu IP address Server Ubuntu kalian
-```
-aidan@ususbuntu:~$ ip a
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host
-       valid_lft forever preferred_lft forever
-2: ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
-    link/ether 00:50:00:00:01:00 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.111.140/24 brd 192.168.111.255 scope global dynamic ens3
-       valid_lft 1745sec preferred_lft 1745sec
-    inet6 fe80::250:ff:fe00:100/64 scope link
-       valid_lft forever preferred_lft forever
-```
-
-Setelah mendapat IP Addressnya, install service OpenVPN menggunakan wget, lalu install service tersebut
-```
-wget https://git.io/vpn -O openvpn-ubuntu-install.sh
-chmod -v +x openvpn-ubuntu-install.sh
-sudo ./openvpn-ubuntu-install.sh
-
-Welcome to this OpenVPN road warrior installer!
-
-This server is behind NAT. What is the public IPv4 address or hostname?
-Public IPv4 address / hostname [103.144.175.62]:
-
-Which protocol should OpenVPN use?
-   1) UDP (recommended)
-   2) TCP
-Protocol [1]:
-
-What port should OpenVPN listen to?
-Port [1194]:
-
-Select a DNS server for the clients:
-   1) Current system resolvers
-   2) Google
-   3) 1.1.1.1
-   4) OpenDNS
-   5) Quad9
-   6) AdGuard
-DNS server [1]: 3
-
-Enter a name for the first client:
-Name [client]: andie
-
-OpenVPN installation is ready to begin.
-Press any key to continue...
-```
-
-Kemudian pastikan service OpenVPN selalu menyala saat startup.
-```
-sudo systemctl enable openvpn-server@server.service
-sudo systemctl start openvpn-server@server.service
-```
-
-Terakhir, ambil file .ovpn dari server tersebut ke PC kita menggunakan command seperti dibawah
-
-```
-C:\Users\Andie>ssh aidan@192.168.111.140 "sudo -S cat /root/andie.ovpn" > andie.ovpn
-aidan@192.168.111.140's password:
-[sudo] password for aidan: 
-```
-
-## Install DNS Server
+### Install DNS Server
 ```
 sudo apt install bind9
 sudo ufw allow 53
@@ -117,7 +39,7 @@ network:
   ethernets:
     enp0s3:
       dhcp4: false
-      addresses: [192.168.111.140/24]
+      addresses: [192.168.111.10/24]
       gateway4: 192.168.111.1
       nameservers:
         search: [andieidn.com]
@@ -139,7 +61,7 @@ sudo nano /etc/hosts
 ********Ubah jadi seperti dibawah ini********
 127.0.0.1 localhost
 127.0.1.1 ususbuntu
-192.168.111.140 andieidn.com
+192.168.111.10 andieidn.com
 *********************************************
 ```
 
@@ -173,11 +95,11 @@ $TTL    604800
                          604800 )       ; Negative Cache TTL
 ;
 @       IN      NS      ns.andieidn.com.
-@       IN      A       192.168.111.140
+@       IN      A       192.168.111.10
 @       IN      MX      10      mail.andieidn.com.
-ns      IN      A       192.168.111.140
+ns      IN      A       192.168.111.10
 www     IN      CNAME   ns
-mail    IN      A       192.168.111.140
+mail    IN      A       192.168.111.10
 ***************************************************************
 ```
 
@@ -243,38 +165,52 @@ Terakhir, restart service BIND9
 ```
 systemctl restart bind9.service
 ```
-## Install File Server
-```
-sudo apt install samba
-sudo systemctl enable smbd
-sudo systemctl start smbd
-```
 
-Backup konfigurasi default yang dimiliki oleh samba dan buat folder yang akan dipakai untuk berbagi file
+### Install DHCP Server
 ```
-cp /etc/samba/smb.conf /etc/samba/smb.conf.ori
-sudo mkdir -p /srv/samba/share
-sudo chown nobody:nogroup /srv/samba/share/
+sudo apt install isc-dhcp-server
 ```
 
-Lalu edit file smb.conf
+Edit file "dhcpd.conf" menjadi seperti dibawah
 ```
-sudo nano /etc/samba/smb.conf
+sudo nano /etc/dhcp/dhcpd.conf
 
-******Taruh di paling bawah******
-[Sharing_Folder]
-    comment = Folder untuk berbagi konten
-    path = /srv/samba/share
-    browsable = yes
-    guest ok = yes
-    read only = no
-    create mask = 0755
+*********Tambahkan tanda pagar pada opsi dibawah ini*********
+# option definitions common to all supported networks...
+# option domain-name "example.org";
+# option domain-name-servers ns1.example.org, ns2.example.org;
+
+# default-lease-time 600;
+# max-lease-time 7200;
+
+****Hilangkan tanda pagar pada opsi dan ubah menjadi seperti dibawah****
+# A slightly different configuration for an internal subnet.
+subnet 192.168.111.0 netmask 255.255.255.0 {
+  range 192.168.111.11 192.168.111.111;
+  option domain-name-servers 192.168.111.254, 192.168.111.1;
+  option domain-name "andieidn.com";
+  option subnet-mask 255.255.255.0;
+  option routers 192.168.111.1;
+  option broadcast-address 192.168.111.255;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+************************************************************************
 ```
 
-Coba akses ke Server menggunakan format "\\(IP Address)" pada File Explorer
+Dan edit file untuk DHCP Server
+```
+sudo nano /etc/default/isc-dhcp-server
 
-![image](https://user-images.githubusercontent.com/100014814/159407448-cd51f38a-bb60-4b3a-90d1-fe460450d608.png)
+*******Tambahkan Interface yang akan dipakai untuk memberikan IP DHCP*******
+# On what interfaces should the DHCP server (dhcpd) serve DHCP requests?
+#       Separate multiple interfaces with spaces, e.g. "eth0 eth1".
+INTERFACESv4="ens3"
+INTERFACESv6=""
+****************************************************************************
+```
 
-Jika sudah ada Folder "Sharing_Folder", maka konfigurasi Samba kalian sudah berhasil.
-
-![image](https://user-images.githubusercontent.com/100014814/159407559-a37bbff0-031f-4e44-ac63-d66e0cbb56df.png)
+Terakhir, restart Service DHCP
+```
+sudo systemctl restart isc-dhcp-server.service
+```
