@@ -35,7 +35,7 @@ ip authentication key eigrp 10 EIGRP
 interface e0/1
 ip authentication mode eigrp 10 md5
 ip authentication key eigrp 10 EIGRP
-delay 8008
+delay 8008135
 ```
 
 ## Config R2
