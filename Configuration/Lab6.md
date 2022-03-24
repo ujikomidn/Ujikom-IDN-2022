@@ -4,6 +4,9 @@ Konfigurasi untuk Lab 6 Ujikom
 
 By: A Sunnah & Andiama
 
+## Topology
+![image](https://user-images.githubusercontent.com/100014814/159840612-e94732e6-6b82-45a7-86e4-cb553819d78e.png)
+
 ## Config Router
 ```
 system identity set name=idnrouter
