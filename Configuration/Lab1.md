@@ -10,9 +10,14 @@ By: Andiama
 - [Config VPCS Kiri](#config-vpcs-kiri)
 - [Config VPCS Kanan](#config-vpcs-kanan)
 
+## Topology
+![image](https://user-images.githubusercontent.com/100014814/159838210-fe70b156-40ec-4345-afe2-e158318b2d8a.png)
+
 ## Config R1
 ```
 system identity set name=R1
+ip dhcp-client add disabled=no interface=ether3
+ip firewall nat add action=masquerade chain=srcnat out-interface=ether3
 ip address add address=12.12.12.1/24 interface=ether2 network=12.12.12.0
 ip address add address=192.168.10.1/24 interface=ether1 network=192.168.10.0
 routing ospf area add area-id=0.0.0.1 name=area1
