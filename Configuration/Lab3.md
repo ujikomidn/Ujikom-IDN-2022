@@ -9,6 +9,9 @@ By: A Sunnah
 - [Config R-3](#config-r-3)
 - [Config R-4](#config-r-4)
 
+## Topology
+![image](https://user-images.githubusercontent.com/100014814/159838915-1f0700c2-ef48-4dd6-afd5-a0f8f6437579.png)
+
 ## Config R-1
 ```
 hostname A-Sunnah-R01
