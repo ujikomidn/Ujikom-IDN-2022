@@ -9,6 +9,9 @@ By: Andiama
 - [Config R2](#config-r2)
 - [Config R3](#config-r3)
 
+## Topology
+![image](https://user-images.githubusercontent.com/100014814/159839480-9b13058e-b091-4a56-855f-5ec3f8531103.png)
+
 ## Config R1
 ```
 host R1
