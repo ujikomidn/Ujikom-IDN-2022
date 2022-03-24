@@ -9,6 +9,9 @@ By: A Sunnah
 - [Script SW-1](#script-sw-1)
 - [Script SW-2](#script-sw-2)
 
+## Topology
+![image](https://user-images.githubusercontent.com/100014814/159839368-dc1c4868-82cc-4466-a01f-bd6128179125.png)
+
 ## Script R-1
 ```
 hostname A-SUNNAH-R1
