@@ -10,6 +10,9 @@ By: Andiama
 - [Config VPCS Kiri](#config-vpcs-kiri)
 - [Config VPCS Kanan](#config-vpcs-kanan)
 
+## Topology
+![image](https://user-images.githubusercontent.com/100014814/160050060-95c41ba6-1536-4970-92fe-22538712ab43.png)
+
 ## Config R1
 ```
 system identity set name=R1
