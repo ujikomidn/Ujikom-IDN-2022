@@ -10,6 +10,9 @@ By: Andiama
   * [Install DNS Server](#install-dns-server)
   * [Install DHCP Server](#install-dhcp-server)
 
+## Topology
+![image](https://user-images.githubusercontent.com/100014814/160049895-6f7f0696-4831-49f7-bfd2-906fcc04538d.png)
+
 ## Server Configuration
 
 ### Install SSH Server
