@@ -10,6 +10,9 @@ By: A Sunnah
 - [Config VPCS Kiri](#config-vpcs-kiri)
 - [Config VPCS Kanan](#config-vpcs-kanan)
 
+## Topology
+![image](https://user-images.githubusercontent.com/100014814/160050480-b414029d-5d8b-4fdb-b94e-256a3ccc5ddc.png)
+
 ## Config R1
 ```
 system identity set name=R1
