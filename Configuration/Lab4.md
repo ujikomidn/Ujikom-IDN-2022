@@ -116,3 +116,5 @@ switchport port-security
 switchport port-security violation restrict
 switchport port-security mac-address sticky
 ```
+
+[NEXT](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab5.md)
