@@ -96,3 +96,5 @@ interface e0/1
 ip authentication mode eigrp 10 md5
 ip authentication key eigrp 10 EIGRP
 ```
+
+[NEXT](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab6.md)
