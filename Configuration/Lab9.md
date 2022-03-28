@@ -46,3 +46,5 @@ ip 192.168.10.3 255.255.255.0 192.168.10.1
 ```
 ip 192.168.10.4 255.255.255.0 192.168.10.2
 ```
+
+[NEXT](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab10.md)
