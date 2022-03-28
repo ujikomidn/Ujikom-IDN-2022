@@ -224,3 +224,5 @@ Terakhir, restart Service DHCP
 ```
 sudo systemctl restart isc-dhcp-server.service
 ```
+
+[NEXT](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab9.md)
