@@ -127,3 +127,5 @@ network 34.34.34.0 mask 255.255.255.0
 neighbor 14.14.14.1 remote-as 123
 neighbor 34.34.34.3 remote-as 123
 ```
+
+[NEXT](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab4.md)
