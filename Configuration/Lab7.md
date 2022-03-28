@@ -382,3 +382,5 @@ Lalu klik "Create Graphs for this Device"
 
 Kemudian refresh interface, baru set "In/Out Bits" untuk Interface yang kita gunakan (atau interface yang menghadap PC)
 ![image](https://user-images.githubusercontent.com/100014814/158503016-bcdb4e5f-7651-460d-832d-a4cf2ee6c138.png)
+
+[NEXT](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab8.md)
