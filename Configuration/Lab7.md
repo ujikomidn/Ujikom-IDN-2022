@@ -14,6 +14,8 @@ By: Andiama
 - [SNMP on Mikrotik](#snmp-on-mikrotik)
   * [Cacti SNMP Setup](#cacti-snmp-setup)
 
+## Topology
+
 ## Cacti Installation
 
 ### LAMP Server Installation
@@ -228,8 +230,9 @@ Gantilah user admin dengan apapun yang diinginkan
 ## SNMP on Mikrotik
 Pertama tama, tambahkan IP Address agar dapat di ping oleh kedua PC
 ```
-ip address add address=192.168.10.1/24 interface=ether1
-ip address add address=192.168.20.1/24 interface=ether2
+ip firewall nat add action=masquerade chain=srcnat out-interface=ether1
+ip address add address=192.168.111.1/24 interface=ether2
+ip address add address=192.168.10.1/24 interface=ether3
 ```
 Kemudian tambahkan setting SNMP pada MikroTik
 ```
