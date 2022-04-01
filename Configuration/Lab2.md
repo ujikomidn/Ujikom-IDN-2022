@@ -24,9 +24,6 @@ add address=192.168.10.1/24 interface=ether4 network=192.168.10.0
 add area=backbone network=12.12.12.0/24
 add area=backbone network=13.13.13.0/24
 add area=backbone network=192.168.10.0/24
-
-/ip route
-add gateway=13.13.13.3
 ```
 
 ## Config R2
@@ -68,9 +65,6 @@ add address=192.168.20.1/24 interface=ether4 network=192.168.20.0
 add area=backbone network=23.23.23.0/24
 add area=backbone network=13.13.13.0/24
 add area=backbone network=192.168.20.0/24
-
-/ip route
-add gateway=23.23.23.3
 ```
 
 [NEXT](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab3.md)
