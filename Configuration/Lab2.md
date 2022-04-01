@@ -46,6 +46,8 @@ add action=drop chain=forward dst-address=103.28.12.165
 /routing ospf network
 add area=backbone network=12.12.12.0/24
 add area=backbone network=23.23.23.0/24
+/routing ospf instance
+set [ find default=yes ] distribute-default=always-as-type-1
 ```
 
 ## Config R3
