@@ -281,4 +281,553 @@ Lalu klik "Create Graphs for this Device"
 Kemudian refresh interface, baru set "In/Out Bits" untuk Interface yang kita gunakan (atau interface yang menghadap PC)
 ![image](https://user-images.githubusercontent.com/100014814/158503016-bcdb4e5f-7651-460d-832d-a4cf2ee6c138.png)
 
+Selanjutnya, Klik "Import Templates" pada dropdown "Import/Export"
+![image](https://user-images.githubusercontent.com/100014814/161274997-d798e779-554c-4eff-9264-785751585338.png)
+
+Klik "Select a file" (jangan lupa matiin Preview Import Only), lalu import kode dibawah sebagai .xml (maksudnya masukin kode dibawah ke dalem .xml, namanya boleh apa aja) 
+```
+<cacti>	
+	<hash_000005e698bfeed6840d045766635a9bacbbe0>
+		<name>Mikrotik - CPU Usage</name>
+		<graph>
+			<t_title></t_title>
+			<title>|host_description| - CPU Usage</title>
+			<t_image_format_id></t_image_format_id>
+			<image_format_id>1</image_format_id>
+			<t_height></t_height>
+			<height>120</height>
+			<t_width></t_width>
+			<width>500</width>
+			<t_auto_scale></t_auto_scale>
+			<auto_scale>on</auto_scale>
+			<t_auto_scale_opts></t_auto_scale_opts>
+			<auto_scale_opts>2</auto_scale_opts>
+			<t_auto_scale_log></t_auto_scale_log>
+			<auto_scale_log></auto_scale_log>
+			<t_auto_scale_rigid></t_auto_scale_rigid>
+			<auto_scale_rigid>on</auto_scale_rigid>
+			<t_auto_padding></t_auto_padding>
+			<auto_padding>on</auto_padding>
+			<t_export></t_export>
+			<export>on</export>
+			<t_upper_limit></t_upper_limit>
+			<upper_limit>100</upper_limit>
+			<t_lower_limit></t_lower_limit>
+			<lower_limit>0</lower_limit>
+			<t_base_value></t_base_value>
+			<base_value>1000</base_value>
+			<t_unit_value></t_unit_value>
+			<unit_value></unit_value>
+			<t_unit_exponent_value></t_unit_exponent_value>
+			<unit_exponent_value></unit_exponent_value>
+			<t_vertical_label></t_vertical_label>
+			<vertical_label>percent</vertical_label>
+		</graph>
+		<items>
+			<hash_100005057d15afb7d8a06b90258c7988ee0b71>
+				<task_item_id>hash_08000548f515755838763a71d68ed3d0fc7175</task_item_id>
+				<color_id>FF0000</color_id>
+				<graph_type_id>7</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060005e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>CPU Usage</text_format>
+				<hard_return></hard_return>
+				<sequence>1</sequence>
+			</hash_100005057d15afb7d8a06b90258c7988ee0b71>
+			<hash_1000054b4bebaa5ec20a923a826fd072767e9a>
+				<task_item_id>hash_08000548f515755838763a71d68ed3d0fc7175</task_item_id>
+				<color_id>0</color_id>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>4</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_06000519414480d6897c8731c7dc6c5310653e</gprint_id>
+				<text_format>Current:</text_format>
+				<hard_return></hard_return>
+				<sequence>2</sequence>
+			</hash_1000054b4bebaa5ec20a923a826fd072767e9a>
+			<hash_100005a49d96e10a3dc74512596d8485763649>
+				<task_item_id>hash_08000548f515755838763a71d68ed3d0fc7175</task_item_id>
+				<color_id>0</color_id>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_06000519414480d6897c8731c7dc6c5310653e</gprint_id>
+				<text_format>Average:</text_format>
+				<hard_return></hard_return>
+				<sequence>3</sequence>
+			</hash_100005a49d96e10a3dc74512596d8485763649>
+			<hash_100005e7cb030d1036ffac6c675322240a4066>
+				<task_item_id>hash_08000548f515755838763a71d68ed3d0fc7175</task_item_id>
+				<color_id>0</color_id>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>3</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_06000519414480d6897c8731c7dc6c5310653e</gprint_id>
+				<text_format>Maximum:</text_format>
+				<hard_return></hard_return>
+				<sequence>4</sequence>
+			</hash_100005e7cb030d1036ffac6c675322240a4066>
+		</items>
+		<inputs>
+			<hash_0900056e0f7a10eb1457ad6881bb3defc47140>
+				<name>Data Source [cpu]</name>
+				<description></description>
+				<column_name>task_item_id</column_name>
+				<items>hash_000005057d15afb7d8a06b90258c7988ee0b71|hash_0000054b4bebaa5ec20a923a826fd072767e9a|hash_000005a49d96e10a3dc74512596d8485763649|hash_000005e7cb030d1036ffac6c675322240a4066</items>
+			</hash_0900056e0f7a10eb1457ad6881bb3defc47140>
+		</inputs>
+	</hash_000005e698bfeed6840d045766635a9bacbbe0>
+	<hash_010005097a276485e6746cb677900ec4062d59>
+		<name>Mikrotik - SNMP - CPU Load</name>
+		<ds>
+			<t_name></t_name>
+			<name>|host_description| - Mikrotik - SNMP - CPU Load (5 min)</name>
+			<data_input_id>hash_0300053eb92bb845b9660a7445cf9740726522</data_input_id>
+			<t_rra_id></t_rra_id>
+			<t_rrd_step></t_rrd_step>
+			<rrd_step>300</rrd_step>
+			<t_active></t_active>
+			<active>on</active>
+			<rra_items>hash_150005c21df5178e5c955013591239eb0afd46|hash_1500050d9c0af8b8acdc7807943937b3208e29|hash_1500056fc2d038fb42950138b0ce3e9874cc60|hash_150005e36f3adb9f152adfa5dc50fd2b23337e</rra_items>
+		</ds>
+		<items>
+			<hash_08000548f515755838763a71d68ed3d0fc7175>
+				<t_data_source_name></t_data_source_name>
+				<data_source_name>cpu</data_source_name>
+				<t_rrd_minimum></t_rrd_minimum>
+				<rrd_minimum>0</rrd_minimum>
+				<t_rrd_maximum></t_rrd_maximum>
+				<rrd_maximum>100</rrd_maximum>
+				<t_data_source_type_id></t_data_source_type_id>
+				<data_source_type_id>1</data_source_type_id>
+				<t_rrd_heartbeat></t_rrd_heartbeat>
+				<rrd_heartbeat>600</rrd_heartbeat>
+				<t_data_input_field_id></t_data_input_field_id>
+				<data_input_field_id>0</data_input_field_id>
+			</hash_08000548f515755838763a71d68ed3d0fc7175>
+		</items>
+		<data>
+			<item_000>
+				<data_input_field_id>hash_0700054276a5ec6e3fe33995129041b1909762</data_input_field_id>
+				<t_value></t_value>
+				<value>.1.3.6.1.2.1.25.3.3.1.2.1</value>
+			</item_000>
+			<item_001>
+				<data_input_field_id>hash_070005012ccb1d3687d3edb29c002ea66e72da</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_001>
+			<item_002>
+				<data_input_field_id>hash_0700059c55a74bd571b4f00a96fd4b793278c6</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_002>
+			<item_003>
+				<data_input_field_id>hash_070005ad14ac90641aed388139f6ba86a2e48b</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_003>
+			<item_004>
+				<data_input_field_id>hash_07000532285d5bf16e56c478f5e83f32cda9ef</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_004>
+			<item_005>
+				<data_input_field_id>hash_07000592f5906c8dc0f964b41f4253df582c38</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_005>
+		</data>
+	</hash_010005097a276485e6746cb677900ec4062d59>
+	<hash_0300053eb92bb845b9660a7445cf9740726522>
+		<name>Get SNMP Data</name>
+		<type_id>2</type_id>
+		<input_string></input_string>
+		<fields>
+			<hash_07000592f5906c8dc0f964b41f4253df582c38>
+				<name>SNMP IP Address</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code>hostname</type_code>
+				<input_output>in</input_output>
+				<data_name>management_ip</data_name>
+			</hash_07000592f5906c8dc0f964b41f4253df582c38>
+			<hash_07000532285d5bf16e56c478f5e83f32cda9ef>
+				<name>SNMP Community</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code>snmp_community</type_code>
+				<input_output>in</input_output>
+				<data_name>snmp_community</data_name>
+			</hash_07000532285d5bf16e56c478f5e83f32cda9ef>
+			<hash_070005ad14ac90641aed388139f6ba86a2e48b>
+				<name>SNMP Username</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls>on</allow_nulls>
+				<type_code>snmp_username</type_code>
+				<input_output>in</input_output>
+				<data_name>snmp_username</data_name>
+			</hash_070005ad14ac90641aed388139f6ba86a2e48b>
+			<hash_0700059c55a74bd571b4f00a96fd4b793278c6>
+				<name>SNMP Password</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls>on</allow_nulls>
+				<type_code>snmp_password</type_code>
+				<input_output>in</input_output>
+				<data_name>snmp_password</data_name>
+			</hash_0700059c55a74bd571b4f00a96fd4b793278c6>
+			<hash_070005012ccb1d3687d3edb29c002ea66e72da>
+				<name>SNMP Version (1, 2, or 3)</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls>on</allow_nulls>
+				<type_code>snmp_version</type_code>
+				<input_output>in</input_output>
+				<data_name>snmp_version</data_name>
+			</hash_070005012ccb1d3687d3edb29c002ea66e72da>
+			<hash_0700054276a5ec6e3fe33995129041b1909762>
+				<name>OID</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code>snmp_oid</type_code>
+				<input_output>in</input_output>
+				<data_name>oid</data_name>
+			</hash_0700054276a5ec6e3fe33995129041b1909762>
+		</fields>
+	</hash_0300053eb92bb845b9660a7445cf9740726522>
+	<hash_150005c21df5178e5c955013591239eb0afd46>
+		<name>Daily (5 Minute Average)</name>
+		<x_files_factor>0.5</x_files_factor>
+		<steps>1</steps>
+		<rows>600</rows>
+		<timespan>86400</timespan>
+		<cf_items>1|3</cf_items>
+	</hash_150005c21df5178e5c955013591239eb0afd46>
+	<hash_1500050d9c0af8b8acdc7807943937b3208e29>
+		<name>Weekly (30 Minute Average)</name>
+		<x_files_factor>0.5</x_files_factor>
+		<steps>6</steps>
+		<rows>700</rows>
+		<timespan>604800</timespan>
+		<cf_items>1|3</cf_items>
+	</hash_1500050d9c0af8b8acdc7807943937b3208e29>
+	<hash_1500056fc2d038fb42950138b0ce3e9874cc60>
+		<name>Monthly (2 Hour Average)</name>
+		<x_files_factor>0.5</x_files_factor>
+		<steps>24</steps>
+		<rows>775</rows>
+		<timespan>2678400</timespan>
+		<cf_items>1|3</cf_items>
+	</hash_1500056fc2d038fb42950138b0ce3e9874cc60>
+	<hash_150005e36f3adb9f152adfa5dc50fd2b23337e>
+		<name>Yearly (1 Day Average)</name>
+		<x_files_factor>0.5</x_files_factor>
+		<steps>288</steps>
+		<rows>797</rows>
+		<timespan>33053184</timespan>
+		<cf_items>1|3</cf_items>
+	</hash_150005e36f3adb9f152adfa5dc50fd2b23337e>
+	<hash_060005e9c43831e54eca8069317a2ce8c6f751>
+		<name>Normal</name>
+		<gprint_text>%8.2lf %s</gprint_text>
+	</hash_060005e9c43831e54eca8069317a2ce8c6f751>
+	<hash_06000519414480d6897c8731c7dc6c5310653e>
+		<name>Exact Numbers</name>
+		<gprint_text>%8.0lf</gprint_text>
+	</hash_06000519414480d6897c8731c7dc6c5310653e>
+</cacti>
+```
+
+Sama ini
+```
+<cacti>	
+	<hash_00000502d5e7579ab9b390756192bb43d3c1cd>
+		<name>Mikrotik - Memory Usage</name>
+		<graph>
+			<t_title></t_title>
+			<title>|host_description| - Memory Usage</title>
+			<t_image_format_id></t_image_format_id>
+			<image_format_id>1</image_format_id>
+			<t_height></t_height>
+			<height>120</height>
+			<t_width></t_width>
+			<width>500</width>
+			<t_auto_scale></t_auto_scale>
+			<auto_scale>on</auto_scale>
+			<t_auto_scale_opts></t_auto_scale_opts>
+			<auto_scale_opts>2</auto_scale_opts>
+			<t_auto_scale_log></t_auto_scale_log>
+			<auto_scale_log></auto_scale_log>
+			<t_auto_scale_rigid></t_auto_scale_rigid>
+			<auto_scale_rigid>on</auto_scale_rigid>
+			<t_auto_padding></t_auto_padding>
+			<auto_padding>on</auto_padding>
+			<t_export></t_export>
+			<export>on</export>
+			<t_upper_limit></t_upper_limit>
+			<upper_limit>100</upper_limit>
+			<t_lower_limit></t_lower_limit>
+			<lower_limit>0</lower_limit>
+			<t_base_value></t_base_value>
+			<base_value>1000</base_value>
+			<t_unit_value></t_unit_value>
+			<unit_value></unit_value>
+			<t_unit_exponent_value></t_unit_exponent_value>
+			<unit_exponent_value></unit_exponent_value>
+			<t_vertical_label></t_vertical_label>
+			<vertical_label>bytes</vertical_label>
+		</graph>
+		<items>
+			<hash_100005556267797455ef3f8d4a1cdf6d20ae46>
+				<task_item_id>hash_080005ee6d22b020f5a247862b508811716784</task_item_id>
+				<color_id>FF0000</color_id>
+				<graph_type_id>7</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>hash_050005634a23af5e78af0964e8d33b1a4ed26b</cdef_id>
+				<value></value>
+				<gprint_id>hash_060005e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Memory Used</text_format>
+				<hard_return></hard_return>
+				<sequence>1</sequence>
+			</hash_100005556267797455ef3f8d4a1cdf6d20ae46>
+			<hash_1000058e60e8408ca9685c031411d1c2842e20>
+				<task_item_id>hash_080005ee6d22b020f5a247862b508811716784</task_item_id>
+				<color_id>0</color_id>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>4</consolidation_function_id>
+				<cdef_id>hash_050005634a23af5e78af0964e8d33b1a4ed26b</cdef_id>
+				<value></value>
+				<gprint_id>hash_060005e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Current:</text_format>
+				<hard_return></hard_return>
+				<sequence>2</sequence>
+			</hash_1000058e60e8408ca9685c031411d1c2842e20>
+			<hash_1000054dd4844b4c16bb6ce6327dc1d1cdaca8>
+				<task_item_id>hash_080005ee6d22b020f5a247862b508811716784</task_item_id>
+				<color_id>0</color_id>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>hash_050005634a23af5e78af0964e8d33b1a4ed26b</cdef_id>
+				<value></value>
+				<gprint_id>hash_060005e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Average:</text_format>
+				<hard_return></hard_return>
+				<sequence>3</sequence>
+			</hash_1000054dd4844b4c16bb6ce6327dc1d1cdaca8>
+			<hash_100005aea20d6c5e3354426e2d6d75627c77fe>
+				<task_item_id>hash_080005ee6d22b020f5a247862b508811716784</task_item_id>
+				<color_id>0</color_id>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>3</consolidation_function_id>
+				<cdef_id>hash_050005634a23af5e78af0964e8d33b1a4ed26b</cdef_id>
+				<value></value>
+				<gprint_id>hash_060005e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Maximum:</text_format>
+				<hard_return></hard_return>
+				<sequence>4</sequence>
+			</hash_100005aea20d6c5e3354426e2d6d75627c77fe>
+		</items>
+		<inputs>
+			<hash_090005fac0d49f1bbe597cbd83bfc4a3209956>
+				<name>Data Source [memory]</name>
+				<description></description>
+				<column_name>task_item_id</column_name>
+				<items>hash_000005556267797455ef3f8d4a1cdf6d20ae46|hash_0000058e60e8408ca9685c031411d1c2842e20|hash_0000054dd4844b4c16bb6ce6327dc1d1cdaca8|hash_000005aea20d6c5e3354426e2d6d75627c77fe</items>
+			</hash_090005fac0d49f1bbe597cbd83bfc4a3209956>
+		</inputs>
+	</hash_00000502d5e7579ab9b390756192bb43d3c1cd>
+	<hash_0100053053e472f299be5161205d276755db34>
+		<name>Mikrotik - SNMP - Memory Usage</name>
+		<ds>
+			<t_name></t_name>
+			<name>|host_description| - Mikrotik - SNMP - Memory Usage</name>
+			<data_input_id>hash_0300053eb92bb845b9660a7445cf9740726522</data_input_id>
+			<t_rra_id></t_rra_id>
+			<t_rrd_step></t_rrd_step>
+			<rrd_step>300</rrd_step>
+			<t_active></t_active>
+			<active>on</active>
+			<rra_items>hash_150005c21df5178e5c955013591239eb0afd46|hash_1500050d9c0af8b8acdc7807943937b3208e29|hash_1500056fc2d038fb42950138b0ce3e9874cc60|hash_150005e36f3adb9f152adfa5dc50fd2b23337e</rra_items>
+		</ds>
+		<items>
+			<hash_080005ee6d22b020f5a247862b508811716784>
+				<t_data_source_name></t_data_source_name>
+				<data_source_name>memory</data_source_name>
+				<t_rrd_minimum></t_rrd_minimum>
+				<rrd_minimum>0</rrd_minimum>
+				<t_rrd_maximum></t_rrd_maximum>
+				<rrd_maximum>0</rrd_maximum>
+				<t_data_source_type_id></t_data_source_type_id>
+				<data_source_type_id>1</data_source_type_id>
+				<t_rrd_heartbeat></t_rrd_heartbeat>
+				<rrd_heartbeat>600</rrd_heartbeat>
+				<t_data_input_field_id></t_data_input_field_id>
+				<data_input_field_id>0</data_input_field_id>
+			</hash_080005ee6d22b020f5a247862b508811716784>
+		</items>
+		<data>
+			<item_000>
+				<data_input_field_id>hash_07000592f5906c8dc0f964b41f4253df582c38</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_000>
+			<item_001>
+				<data_input_field_id>hash_07000532285d5bf16e56c478f5e83f32cda9ef</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_001>
+			<item_002>
+				<data_input_field_id>hash_070005ad14ac90641aed388139f6ba86a2e48b</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_002>
+			<item_003>
+				<data_input_field_id>hash_0700059c55a74bd571b4f00a96fd4b793278c6</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_003>
+			<item_004>
+				<data_input_field_id>hash_070005012ccb1d3687d3edb29c002ea66e72da</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_004>
+			<item_005>
+				<data_input_field_id>hash_0700054276a5ec6e3fe33995129041b1909762</data_input_field_id>
+				<t_value></t_value>
+				<value>.1.3.6.1.2.1.25.2.3.1.6.2</value>
+			</item_005>
+		</data>
+	</hash_0100053053e472f299be5161205d276755db34>
+	<hash_0300053eb92bb845b9660a7445cf9740726522>
+		<name>Get SNMP Data</name>
+		<type_id>2</type_id>
+		<input_string></input_string>
+		<fields>
+			<hash_07000592f5906c8dc0f964b41f4253df582c38>
+				<name>SNMP IP Address</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code>hostname</type_code>
+				<input_output>in</input_output>
+				<data_name>management_ip</data_name>
+			</hash_07000592f5906c8dc0f964b41f4253df582c38>
+			<hash_07000532285d5bf16e56c478f5e83f32cda9ef>
+				<name>SNMP Community</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code>snmp_community</type_code>
+				<input_output>in</input_output>
+				<data_name>snmp_community</data_name>
+			</hash_07000532285d5bf16e56c478f5e83f32cda9ef>
+			<hash_070005ad14ac90641aed388139f6ba86a2e48b>
+				<name>SNMP Username</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls>on</allow_nulls>
+				<type_code>snmp_username</type_code>
+				<input_output>in</input_output>
+				<data_name>snmp_username</data_name>
+			</hash_070005ad14ac90641aed388139f6ba86a2e48b>
+			<hash_0700059c55a74bd571b4f00a96fd4b793278c6>
+				<name>SNMP Password</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls>on</allow_nulls>
+				<type_code>snmp_password</type_code>
+				<input_output>in</input_output>
+				<data_name>snmp_password</data_name>
+			</hash_0700059c55a74bd571b4f00a96fd4b793278c6>
+			<hash_070005012ccb1d3687d3edb29c002ea66e72da>
+				<name>SNMP Version (1, 2, or 3)</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls>on</allow_nulls>
+				<type_code>snmp_version</type_code>
+				<input_output>in</input_output>
+				<data_name>snmp_version</data_name>
+			</hash_070005012ccb1d3687d3edb29c002ea66e72da>
+			<hash_0700054276a5ec6e3fe33995129041b1909762>
+				<name>OID</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code>snmp_oid</type_code>
+				<input_output>in</input_output>
+				<data_name>oid</data_name>
+			</hash_0700054276a5ec6e3fe33995129041b1909762>
+		</fields>
+	</hash_0300053eb92bb845b9660a7445cf9740726522>
+	<hash_150005c21df5178e5c955013591239eb0afd46>
+		<name>Daily (5 Minute Average)</name>
+		<x_files_factor>0.5</x_files_factor>
+		<steps>1</steps>
+		<rows>600</rows>
+		<timespan>86400</timespan>
+		<cf_items>1|3</cf_items>
+	</hash_150005c21df5178e5c955013591239eb0afd46>
+	<hash_1500050d9c0af8b8acdc7807943937b3208e29>
+		<name>Weekly (30 Minute Average)</name>
+		<x_files_factor>0.5</x_files_factor>
+		<steps>6</steps>
+		<rows>700</rows>
+		<timespan>604800</timespan>
+		<cf_items>1|3</cf_items>
+	</hash_1500050d9c0af8b8acdc7807943937b3208e29>
+	<hash_1500056fc2d038fb42950138b0ce3e9874cc60>
+		<name>Monthly (2 Hour Average)</name>
+		<x_files_factor>0.5</x_files_factor>
+		<steps>24</steps>
+		<rows>775</rows>
+		<timespan>2678400</timespan>
+		<cf_items>1|3</cf_items>
+	</hash_1500056fc2d038fb42950138b0ce3e9874cc60>
+	<hash_150005e36f3adb9f152adfa5dc50fd2b23337e>
+		<name>Yearly (1 Day Average)</name>
+		<x_files_factor>0.5</x_files_factor>
+		<steps>288</steps>
+		<rows>797</rows>
+		<timespan>33053184</timespan>
+		<cf_items>1|3</cf_items>
+	</hash_150005e36f3adb9f152adfa5dc50fd2b23337e>
+	<hash_050005634a23af5e78af0964e8d33b1a4ed26b>
+		<name>Multiply by 1024</name>
+		<items>
+			<hash_14000586370cfa0008fe8c56b28be80ee39a40>
+				<sequence>1</sequence>
+				<type>4</type>
+				<value>CURRENT_DATA_SOURCE</value>
+			</hash_14000586370cfa0008fe8c56b28be80ee39a40>
+			<hash_1400059a35cc60d47691af37f6fddf02064e20>
+				<sequence>2</sequence>
+				<type>6</type>
+				<value>1024</value>
+			</hash_1400059a35cc60d47691af37f6fddf02064e20>
+			<hash_1400055d7a7941ec0440b257e5598a27dd1688>
+				<sequence>3</sequence>
+				<type>2</type>
+				<value>3</value>
+			</hash_1400055d7a7941ec0440b257e5598a27dd1688>
+		</items>
+	</hash_050005634a23af5e78af0964e8d33b1a4ed26b>
+	<hash_060005e9c43831e54eca8069317a2ce8c6f751>
+		<name>Normal</name>
+		<gprint_text>%8.2lf %s</gprint_text>
+	</hash_060005e9c43831e54eca8069317a2ce8c6f751>
+</cacti>
+```
+
+Kalo udah, coba 
+
 [NEXT](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab8.md)
