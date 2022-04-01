@@ -228,7 +228,7 @@ Gantilah user admin dengan apapun yang diinginkan
 ![image](https://user-images.githubusercontent.com/100014814/157776476-65d4134b-db25-471e-90db-c38cde10838c.png)
 
 ## SNMP on Mikrotik
-Pertama tama, tambahkan IP Address agar dapat di ping oleh kedua PC
+Pertama tama, tambahkan IP Address agar dapat di ping oleh PC dan Server
 ```
 ip firewall nat add action=masquerade chain=srcnat out-interface=ether1
 ip address add address=192.168.111.1/24 interface=ether2
@@ -236,6 +236,12 @@ ip address add address=192.168.10.1/24 interface=ether3
 ```
 Kemudian tambahkan setting SNMP pada MikroTik
 ```
+[admin@MikroTik] > ip pool add name=dhcp_pool0 ranges=192.168.111.1-192.168.111.254
+[admin@MikroTik] > ip pool add name=dhcp_pool1 ranges=192.168.10.1-192.168.10.254
+[admin@MikroTik] > ip dhcp-server network add address=192.168.111.0/24 dns-server=8.8.8.8 gateway=192.168.111.1
+[admin@MikroTik] > ip dhcp-server network add address=192.168.10.0/24 dns-server=8.8.8.8 gateway=192.168.10.1
+[admin@MikroTik] > ip dhcp-server add address-pool=dhcp_pool0 disabled=no interface=ether2 name=dhcp1
+[admin@MikroTik] > ip dhcp-server add address-pool=dhcp_pool1 disabled=no interface=ether3 name=dhcp2
 [admin@MikroTik] > snmp set enabled=yes
 [admin@MikroTik] > snmp community set name=SNMPIDN 0
 [admin@MikroTik] > snmp community print             
@@ -254,8 +260,8 @@ Flags: * - default, X - disabled
 ```
 Lalu pada Server Linux, install dan coba SNMP
 ```
-aidan@ubuntu:~$ sudo apt-get install snmp
-aidan@ubuntu:~$ snmpwalk -v2c -c SNMPIDN 192.168.10.1
+aidan@ujikommunication:~$ sudo apt-get install snmp
+aidan@ujikommunication:~$ snmpwalk -v2c -c SNMPIDN 192.168.111.1
 ```
 
 ### Cacti SNMP Setup
