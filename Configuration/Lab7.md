@@ -106,7 +106,7 @@ MariaDB [(none)]> exit
 Edit konfigurasi MariaDB agar bisa digunakan oleh Cacti
 ```
 sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
-************Masukkan konfigurasi dibawah ke paling bawah text************
+************Masukkan konfigurasi dibawah kedalam file************
 character-set-server            = utf8mb4
 collation-server                = utf8mb4_unicode_ci
 max_heap_table_size             = 128M
