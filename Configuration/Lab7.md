@@ -12,9 +12,12 @@ By: Andiama
   * [Apache Configuration for Cacti](#apache-configuration-for-cacti)
   * [Cacti Frontend Installation](#cacti-frontend-installation)
 - [SNMP on Mikrotik](#snmp-on-mikrotik)
-  * [Cacti SNMP Setup](#cacti-snmp-setup)
+- [Cacti SNMP Setup](#cacti-snmp-setup)
+  * [Script CPU Usage](#script-cpu-usage)
+  * [Script Memory Usage](#script-memory-usage)
 
 ## Topology
+![image](https://user-images.githubusercontent.com/100014814/161365981-bf19df01-07c6-4b85-9bd1-b5abc04e973b.png)
 
 ## Cacti Installation
 
@@ -264,27 +267,26 @@ aidan@ujikommunication:~$ sudo apt-get install snmp
 aidan@ujikommunication:~$ snmpwalk -v2c -c SNMPIDN 192.168.111.1
 ```
 
-### Cacti SNMP Setup
+## Cacti SNMP Setup
 Di server Cacti, buka
 **Create > New Device**
 ![image](https://user-images.githubusercontent.com/100014814/158086957-9034d80a-6583-43a7-a20d-5b9ea6ab7a4b.png)
 
-Masukkan Description, Hostname, Device Template dan SNMP Version 2. Jika sudah sama, klik "Create".
-![image](https://user-images.githubusercontent.com/100014814/158087294-743c9ffa-d948-4583-8185-895a8c7f073e.png)
+Masukkan Description, Hostname, Device Template, SNMP Version dan SNMP Community String. Jika sudah sama, klik "Create" pada pojok kanan bawah.
+![image](https://user-images.githubusercontent.com/100014814/161364151-59464ee9-0f9d-4343-a2e3-75d2d9ba2135.png)
 
-Kemudian scroll kebawah dan tambahkan Graph Template untuk CPU dan Memory
-![image](https://user-images.githubusercontent.com/100014814/158502188-8f49e727-4573-4a6a-bf41-e68cc139559b.png)
-
-Lalu klik "Create Graphs for this Device"
+Klik "Create Graphs for this Device"
 ![image](https://user-images.githubusercontent.com/100014814/158502423-7bdb8f3b-2789-4f4b-8ee4-c815049ee101.png)
 
-Kemudian refresh interface, baru set "In/Out Bits" untuk Interface yang kita gunakan (atau interface yang menghadap PC)
+Kemudian refresh interface, baru set "In/Out Bits" untuk Interface yang mengarah ke Internet.
 ![image](https://user-images.githubusercontent.com/100014814/158503016-bcdb4e5f-7651-460d-832d-a4cf2ee6c138.png)
 
 Selanjutnya, Klik "Import Templates" pada dropdown "Import/Export"
-![image](https://user-images.githubusercontent.com/100014814/161274997-d798e779-554c-4eff-9264-785751585338.png)
+![image](https://user-images.githubusercontent.com/100014814/161364339-712e0f2a-3a71-4718-a83d-20f6b1c1bfc9.png)
 
-Klik "Select a file" (jangan lupa matiin Preview Import Only), lalu import kode dibawah sebagai .xml (maksudnya masukin kode dibawah ke dalem .xml, namanya boleh apa aja) 
+Klik "Select a file" (jangan lupa matiin Preview Import Only), lalu import kode dibawah sebagai .xml (maksudnya masukin kode dibawah ke dalem .xml, namanya boleh apa aja) ((oiya sama jangan lupa pisahin script CPU sama Memorynya))
+
+### Script CPU Usage
 ```
 <cacti>	
 	<hash_000005e698bfeed6840d045766635a9bacbbe0>
@@ -548,7 +550,7 @@ Klik "Select a file" (jangan lupa matiin Preview Import Only), lalu import kode 
 </cacti>
 ```
 
-Sama ini
+### Script Memory Usage
 ```
 <cacti>	
 	<hash_00000502d5e7579ab9b390756192bb43d3c1cd>
@@ -828,6 +830,19 @@ Sama ini
 </cacti>
 ```
 
-Kalo udah, coba 
+Kalo udah, coba balik ke tab Management > Devices, abis itu klik SNMP yang tadi udah dibuat.
+![image](https://user-images.githubusercontent.com/100014814/161364485-80e641e6-75f8-4b3e-b9fb-7ad890516de5.png)
+
+Scroll kebawah abis itu disini, tambahin Graph CPU Usage sama Memory Usage yang tadi udah kita tambahin.
+![image](https://user-images.githubusercontent.com/100014814/161364972-f03e44ce-ce4c-4ffe-942c-68b1ef654241.png)
+
+Nah kalo udah ditambahin, kalian tinggal perlu ke tab Graphs, abis itu klik dropdown di ujung kanan dan masukin "Place on a Tree (Default Tree)"
+![image](https://user-images.githubusercontent.com/100014814/161365782-cd440cbc-a66c-41d0-a64a-98588cd77f52.png)
+
+Setelah itu klik "Continue"
+![image](https://user-images.githubusercontent.com/100014814/161365817-b3bc4c8c-fa24-403c-897f-93ebaa095f6e.png)
+
+Terakhir, jika ingin melihat graph dari Mikrotik, klik "Graphs" pada kiri atas dan klik tree yang tadi kalian pilih (defaultnya di Default Tree).
+![image](https://user-images.githubusercontent.com/100014814/161365884-ae257800-91fe-4029-b0cb-50bf17a068b5.png)
 
 [NEXT](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab8.md)
