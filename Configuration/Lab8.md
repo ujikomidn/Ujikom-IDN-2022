@@ -109,5 +109,11 @@ PS C:\Users\AdminIDN> Add-DhcpServerv4Scope -Name "Ujikom" `
 -LeaseDuration 8.00:00:00 `
 -State Active `
 -PassThru 
+PS C:\Users\AdminIDN> Set-DhcpServerv4OptionValue -DnsDomain "idn.id" `
+-DnsServer "192.168.10.101" `
+-Router "192.168.10.1" `
+-ScopeId "192.168.10.0" `
+-PassThru 
+PS C:\Users\AdminIDN> Restart-Service DHCPServer 
 ```
 [NEXT](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab9.md)
