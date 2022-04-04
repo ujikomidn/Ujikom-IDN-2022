@@ -4,225 +4,110 @@ Konfigurasi untuk Lab 8 Ujikom
 By: Andiama
 
 ## Table of Contents
+- [Mending ke ******https://www.server-world.info/en/note?os=Windows_Server_2019&p=download****** soalnya lebih shahih](#mending-ke-------https---wwwserver-worldinfo-en-note-os-windows-server-2019-p-download-------soalnya-lebih-shahih)
 - [Server Configuration](#server-configuration)
-  * [Install SSH Server](#install-ssh-server)
-  * [Install FTP Server](#install-ftp-server)
+  * [Initial Configuration](#initial-configuration)
+    + [Change Administrator Name](#change-administrator-name)
+    + [Change Computer Name](#change-computer-name)
+    + [Set DNS Name](#set-dns-name)
+    + [Set Static IP Address](#set-static-ip-address)
   * [Install DNS Server](#install-dns-server)
   * [Install DHCP Server](#install-dhcp-server)
 
 ## Topology
 ![image](https://user-images.githubusercontent.com/100014814/160049895-6f7f0696-4831-49f7-bfd2-906fcc04538d.png)
 
+
+## Mending ke ******https://www.server-world.info/en/note?os=Windows_Server_2019&p=download****** soalnya lebih shahih
+
 ## Server Configuration
 
-### Install SSH Server
-Instalasi SSH Server sangat mudah, seperti dibawah
+### Initial Configuration
+
+#### Change Administrator Name
 ```
-sudo apt update
-sudo apt install openssh-server
-sudo systemctl enable ssh
-sudo systemctl start ssh
+PS C:\Users\Administrator> Rename-LocalUser -Name "Administrator" -NewName "AdminIDN" 
+```
+#### Change Computer Name
+```
+PS C:\Users\AdminIDN> Rename-Computer -NewName Ujikom -Force -PassThru 
+```
+#### Set DNS Name
+```
+PS C:\Users\AdminIDN> Set-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\" –Name "NV Domain" –Value "idn.id" -PassThru 
+PS C:\Users\AdminIDN> Restart-Computer -Force
+```
+#### Set Static IP Address
+Pertama, cek status Ethernet pada Server
+```
+PS C:\Users\AdminIDN> Get-NetIPInterface -AddressFamily IPv4 
+
+ifIndex InterfaceAlias                  AddressFamily NlMtu(Bytes) InterfaceMetric Dhcp     ConnectionState PolicyStore
+------- --------------                  ------------- ------------ --------------- ----     --------------- -----------
+6       Ethernet                        IPv4                  1500              15 Enabled  Connected       ActiveStore
+1       Loopback Pseudo-Interface 1     IPv4            4294967295              75 Disabled Connected       ActiveStore
+
 ```
 
-### Install FTP Server
+Jika DHCPnya menyala, matikan terlebih dahulu
 ```
-sudo apt install vsftpd
-sudo systemctl enable vsftpd
-sudo systemctl start vsftpd
-sudo nano /etc/vsftpd.conf
->>>write_enable=YES
+PS C:\Users\AdminIDN> Set-NetIPInterface -InterfaceIndex 6 -Dhcp Disabled
 ```
 
+Kemudian set IP Address sesuai keinginan
+```
+PS C:\Users\AdminIDN> New-NetIPAddress -InterfaceIndex 6 -AddressFamily IPv4 -IPAddress "192.168.10.11" -PrefixLength 24 -DefaultGateway "192.168.10.10" 
+```
+Dan set DNS Server
+```
+PS C:\Users\Administrator> Set-DnsClientServerAddress -InterfaceIndex 6 -ServerAddresses "192.168.10.111" -PassThru 
+```
 ### Install DNS Server
+Install DNS dan DHCP Server agar tidak restart server 2 kali (jangan lupa Run as Administrator)
 ```
-sudo apt install bind9
-sudo ufw allow 53
-udo systemctl start bind9.service
-```
-
-Kemudian kita ganti DHCPnya menjadi Static IP
-```
-sudo nano /etc/netplan/00-installer-config.yaml
-********Ubah jadi seperti dibawah ini********
-# This is the network config written by 'subiquity'
-network:
-  ethernets:
-    enp0s3:
-      dhcp4: false
-      addresses: [192.168.111.10/24]
-      gateway4: 192.168.111.1
-      nameservers:
-        search: [andieidn.com]
-        addresses: [192.168.111.254, 192.168.111.1]
-  version: 2
-*********************************************
-
-
-sudo nano /etc/resolv.conf
-********Ubah jadi seperti dibawah ini********
-nameserver 192.168.111.254
-nameserver 192.168.111.1
-options edns0
-search andieidn.com
-*********************************************
-
-
-sudo nano /etc/hosts
-********Ubah jadi seperti dibawah ini********
-127.0.0.1 localhost
-127.0.1.1 ususbuntu
-192.168.111.10 andieidn.com
-*********************************************
+PS C:\Users\AdminIDN> Install-WindowsFeature DNS -IncludeManagementTools 
+PS C:\Users\AdminIDN> Install-WindowsFeature DHCP -IncludeManagementTools
+PS C:\Users\AdminIDN> Restart-Computer -Force 
 ```
 
-Kemudian konfigurasikan DNS Server tersebut
+Tambahkan Forward dan Reverse Lookup Zone
 ```
-sudo nano /etc/bind/named.conf.local
-*****************Buat seperti dibawah tersebut*****************
-// Consider adding the 1918 zones here, if they are not used in your
-// organization
-//include "/etc/bind/zones.rfc1918";
-
-zone "andieidn.com" {
-        type master;
-        file "/etc/bind/db.andieidn";
-};
-***************************************************************
-
-
-sudo cp /etc/bind/db.local /etc/bind/db.andieidn
-sudo nano /etc/bind/db.andieidn
-*****************Buat seperti dibawah tersebut*****************
-;
-; BIND data file for Andie IDN
-;
-$TTL    604800
-@       IN      SOA     ns.andieidn.com. root.andieidn.com. (
-                              2         ; Serial
-                         604800         ; Refresh
-                          86400         ; Retry
-                        2419200         ; Expire
-                         604800 )       ; Negative Cache TTL
-;
-@       IN      NS      ns.andieidn.com.
-@       IN      A       192.168.111.10
-@       IN      MX      10      mail.andieidn.com.
-ns      IN      A       192.168.111.10
-www     IN      CNAME   ns
-mail    IN      A       192.168.111.10
-***************************************************************
+PS C:\Users\AdminIDN> Add-DnsServerPrimaryZone -Name "idn.id" -ZoneFile "idn.id.dns" -DynamicUpdate None -PassThru
+PS C:\Users\AdminIDN> Add-DnsServerPrimaryZone -NetworkID 192.0.0.0/24 -ZoneFile "0.0.192.in-addr.arpa.dns" -DynamicUpdate None -PassThru 
 ```
 
-Lalu kita tambahkan Reverse Zone
+Kemudian tambahkan Record untuk A/PTR
 ```
-sudo nano /etc/bind/named.conf.local
-*****************Buat seperti dibawah tersebut*****************
-// Consider adding the 1918 zones here, if they are not used in your
-// organization
-//include "/etc/bind/zones.rfc1918";
-
-zone "andieidn.com" {
-        type master;
-        file "/etc/bind/db.andieidn";
-};
-
-zone "22.168.192.in-addr.arpa" {
-        type master;
-        file "/etc/bind/db.192";
-};
-***************************************************************
-
-
-sudo cp /etc/bind/db.127 /etc/bind/db.192
-sudo nano /etc/bind/db.192
-*****************Buat seperti dibawah tersebut*****************
-;
-; BIND reverse data file for Andie IDN
-;
-$TTL    604800
-@       IN      SOA     ns.andieidn.com. root.andieidn.com. (
-                              2         ; Serial
-                         604800         ; Refresh
-                          86400         ; Retry
-                        2419200         ; Expire
-                         604800 )       ; Negative Cache TTL
-;
-@       IN      NS      ns.andieidn.com.
-1       IN      PTR     ns.andieidn.com.
-1       IN      PTR     www.andieidn.com
-1       IN      PTR     mail.andieidn.com
-***************************************************************
+PS C:\Users\AdminIDN> Add-DnsServerResourceRecordA -Name "ujikomtest" -ZoneName "idn.id" -IPv4Address "192.168.10.101" -TimeToLive 01:00:00 -CreatePtr -PassThru 
 ```
 
-
-Selanjutnya setting DNS Caching
+Dan terakhir, coba tes apakah DNS Server sudah terbaca
 ```
-sudo nano /etc/bind/named.conf.options
-********************Edit seperti di bawah ini********************
-        // If your ISP provided one or more IP addresses for stable
-        // nameservers, you probably want to use them as forwarders.
-        // Uncomment the following block, and insert the addresses replacing
-        // the all-0's placeholder.
+PS C:\Users\AdminIDN> nslookup ujikomtest.idn.id localhost 
+Server:  UnKnown
+Address:  ::1
 
-         forwarders {
-              9.9.9.9;
-              1.1.1.1;
-        };
-*****************************************************************
-```
+Name:    ujikomtest.idn.id
+Address:  192.168.10.101
 
-Terakhir, restart service BIND9
-```
-systemctl restart bind9.service
-```
+PS C:\Users\Administrator> nslookup 192.168.10.101 localhost 
+Server:  UnKnown
+Address:  ::1
 
+Name:    ujikomtest.idn.id
+Address:  192.168.10.101
+```
 ### Install DHCP Server
-```
-sudo apt install isc-dhcp-server
-```
 
-Edit file "dhcpd.conf" menjadi seperti dibawah
+Server akan restart setelah memasukkan command diatas. Selanjutnya, setting agar DHCP Server bisa dipakai oleh PC.
 ```
-sudo nano /etc/dhcp/dhcpd.conf
-
-*********Tambahkan tanda pagar pada opsi dibawah ini*********
-# option definitions common to all supported networks...
-# option domain-name "example.org";
-# option domain-name-servers ns1.example.org, ns2.example.org;
-
-# default-lease-time 600;
-# max-lease-time 7200;
-
-****Hilangkan tanda pagar pada opsi dan ubah menjadi seperti dibawah****
-# A slightly different configuration for an internal subnet.
-subnet 192.168.111.0 netmask 255.255.255.0 {
-  range 192.168.111.11 192.168.111.111;
-  option domain-name-servers 192.168.111.254, 192.168.111.1;
-  option domain-name "andieidn.com";
-  option subnet-mask 255.255.255.0;
-  option routers 192.168.111.1;
-  option broadcast-address 192.168.111.255;
-  default-lease-time 600;
-  max-lease-time 7200;
-}
-************************************************************************
+PS C:\Users\AdminIDN> Add-DhcpServerSecurityGroup -ComputerName "Ujikom.idn.id" 
+PS C:\Users\AdminIDN> Add-DhcpServerv4Scope -Name "Ujikom" `
+-StartRange 192.168.10.112 `
+-EndRange 192.168.10.254 `
+-SubnetMask 255.255.255.0 `
+-LeaseDuration 8.00:00:00 `
+-State Active `
+-PassThru 
 ```
-
-Dan edit file untuk DHCP Server
-```
-sudo nano /etc/default/isc-dhcp-server
-
-*******Tambahkan Interface yang akan dipakai untuk memberikan IP DHCP*******
-# On what interfaces should the DHCP server (dhcpd) serve DHCP requests?
-#       Separate multiple interfaces with spaces, e.g. "eth0 eth1".
-INTERFACESv4="ens3"
-INTERFACESv6=""
-****************************************************************************
-```
-
-Terakhir, restart Service DHCP
-```
-sudo systemctl restart isc-dhcp-server.service
-```
-
 [NEXT](https://github.com/ujikomidn/Ujikom-IDN-2022/blob/main/Configuration/Lab9.md)
