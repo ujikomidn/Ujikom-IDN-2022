@@ -39,6 +39,7 @@ ip authentication key-chain eigrp 12 a-sunnah
 
 router bgp 123
 network 14.14.14.0 mask 255.255.255.0
+network 12.12.12.0 mask 255.255.255.0
 network 11.11.11.11 mask 255.255.255.255
 neighbor 2.2.2.2 remote-as 123
 neighbor 2.2.2.2 update-source loopback 0
@@ -77,6 +78,8 @@ ip ospf authentication message-digest
 ip ospf message-digest-key 1 md5 a-sunnah
 
 router bgp 123
+network 12.12.12.0 mask 255.255.255.0
+network 23.23.23.0 mask 255.255.255.0
 neighbor 1.1.1.1 remote-as 123
 neighbor 1.1.1.1 route-reflector-client
 neighbor 1.1.1.1 update-source loopback 0
@@ -109,6 +112,7 @@ ip ospf message-digest-key 1 md5 a-sunnah
 
 router bgp 123
 network 34.34.34.0 mask 255.255.255.0
+network 23.23.23.0 mask 255.255.255.0
 network 33.33.33.33 mask 255.255.255.255
 neighbor 2.2.2.2 remote-as 123
 neighbor 2.2.2.2 update-source loopback 0
