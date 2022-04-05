@@ -39,12 +39,10 @@ service dhcp
 ip dhcp pool VLAN-10
 network 192.168.10.0 255.255.255.0
 default-router 192.168.10.1
-ip dhcp excluded-address 192.168.10.1 192.168.10.10
 
 ip dhcp pool VLAN-20
 network 192.168.20.0 255.255.255.0
 default-router 192.168.20.1
-ip dhcp excluded-address 192.168.20.1 192.168.20.10
 
 access-list 1 permit any
 ip access-list extended A-SUNNAH-RULES
@@ -54,7 +52,7 @@ ip access-list extended A-SUNNAH-RULES
 interface ethernet 0/0
 ip access-group A-SUNNAH-RULES out
 
-ip nat inside source list 1 interface fastEthernet 0/0 overload
+ip nat inside source list 1 interface Ethernet 0/0 overload
 ```
 
 ## Script SW-1
@@ -71,11 +69,12 @@ description ETHERCHANNEL-TO-SW2
 channel-group 1 mode desirable
 
 interface port-channel 1
-switchport mode access
 description ETHERCHANNEL-TO-SW2
+switchport trunk encapsulation dot1q
 switchport mode trunk
 
 interface ethernet 0/0
+switchport trunk encapsulation dot1q
 switchport mode trunk
 description TO-R1
 ```
@@ -98,6 +97,7 @@ channel-group 1 mode auto
 
 interface port-channel 1
 description ETHERCHANNEL-TO-SW1
+switchport trunk encapsulation dot1q
 switchport mode trunk
 
 interface ethernet 0/0
